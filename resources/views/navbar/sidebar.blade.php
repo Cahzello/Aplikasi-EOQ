@@ -19,7 +19,7 @@
                 <span>Dashboard</span></a>
         </li>
 
-        <li class="nav-item">
+        <li class="nav-item {{ $active === 'eoq' ? 'active' : ''  }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseData"
                 aria-expanded="true" aria-controls="collapseData">
                 <i class="fas fa-fw fa-table"></i>
@@ -27,16 +27,11 @@
             </a>
             <div id="collapseData" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="#">Input Barang</a>
-                    <a class="collapse-item" href="#">Data Barang</a>
+                    <a class="collapse-item" href="/eoq">Economic Order Quantity</a>
+                    <a class="collapse-item" href="#">Safety Stock</a>
+                    <a class="collapse-item" href="#">Reorder Point</a>
                 </div>
             </div>
-        </li>
-
-        <li class="nav-item my-0 {{ $active === 'eoq' ? 'active' : ''  }}">
-            <a class="nav-link" href="/eoq">
-                <i class="fas fa-fw fa-database"></i>
-                <span>EOQ</span></a>
         </li>
 
         <li class="nav-item my-0 {{ $active === 'user' ? 'active' : ''  }}">

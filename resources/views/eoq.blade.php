@@ -13,13 +13,16 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Demand</th>
-                                <th>Ordering Cost</th>
-                                <th>Storage Cost</th>
+                                <th>No</th>
+                                <th>Bahan Baku</th>
+                                <th>Penggunaan</th>
+                                <th>Biaya Pemesanan</th>
+                                <th>Biaya Penyimpanan Per Unit</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr><td>1</td>
+                                <td><input type="text" name="" id=""></td>
                                 <td><input type="text" name="" id=""></td>
                                 <td><input type="text" name="" id=""></td>
                                 <td><input type="text" name="" id=""></td>
