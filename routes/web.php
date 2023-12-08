@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EoqController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::post('/calculate', [EoqController::class, 'calculate'])->name('calculate');
+
 Route::get('/', function () {
     return view('homepage', [
         'active' => 'homepage'
@@ -25,9 +29,9 @@ Route::get('/home', function () {
     ]);
 });
 
-Route::get('/eoq', function () {
-    return view('eoq', [
-        'active' => 'eoq'
+Route::get('/input-data', function () {
+    return view('inputdata', [
+        'active' => 'Input'
     ]);
 });
 

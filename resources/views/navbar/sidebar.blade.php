@@ -19,6 +19,12 @@
                 <span>Dashboard</span></a>
         </li>
 
+        <li class="nav-item my-0 {{ $active === 'Input' ? 'active' : ''  }}">
+            <a class="nav-link" href="/input-data">
+                <i class="far fa-fw fa-edit" aria-hidden="true"></i>
+                <span>Input Bahan Baku</span></a>
+        </li>
+
         <li class="nav-item {{ $active === 'eoq' ? 'active' : ''  }}">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseData"
                 aria-expanded="true" aria-controls="collapseData">
