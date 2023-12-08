@@ -3,10 +3,10 @@
 
         <!-- Sidebar - Brand -->
         <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-            <div class="sidebar-brand-icon rotate-n-15">
-                <i class="fas fa-cog"></i>
+            <div class="sidebar-brand-icon">
+                <i class="fas fa-warehouse"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">Sistem EOQ</div>
+            <div class="sidebar-brand-text mx-3">Shidqia</div>
         </a>
 
         <!-- Divider -->
@@ -41,7 +41,7 @@
         </li>
 
         <li class="nav-item my-0 {{ $active === 'user' ? 'active' : ''  }}">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="/user-list">
                 <i class="fas fa-fw fa-user"></i>
                 <span>User</span></a>
         </li>
