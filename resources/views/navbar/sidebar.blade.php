@@ -19,25 +19,16 @@
                 <span>Dashboard</span></a>
         </li>
 
-        <li class="nav-item my-0 {{ $active === 'Input' ? 'active' : ''  }}">
+        <li class="nav-item my-0 {{ $active === 'input' ? 'active' : ''  }}">
             <a class="nav-link" href="/input-data">
                 <i class="far fa-fw fa-edit" aria-hidden="true"></i>
                 <span>Input Bahan Baku</span></a>
         </li>
 
-        <li class="nav-item {{ $active === 'eoq' ? 'active' : ''  }}">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseData"
-                aria-expanded="true" aria-controls="collapseData">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Data</span>
-            </a>
-            <div id="collapseData" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <a class="collapse-item" href="/eoq">Economic Order Quantity</a>
-                    <a class="collapse-item" href="#">Safety Stock</a>
-                    <a class="collapse-item" href="#">Reorder Point</a>
-                </div>
-            </div>
+        <li class="nav-item my-0 {{ $active === 'data' ? 'active' : ''  }}">
+            <a class="nav-link" href="/data">
+                <i class="fas fa-fw fa-table" aria-hidden="true"></i>
+                <span>Data Hasil Perhitungan</span></a>
         </li>
 
         <li class="nav-item my-0 {{ $active === 'user' ? 'active' : ''  }}">

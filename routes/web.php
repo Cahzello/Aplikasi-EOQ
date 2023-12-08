@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/calculate', [EoqController::class, 'calculate'])->name('calculate');
-
-Route::get('/calculate', [EoqController::class, 'redirect'])->name('redirect');
-
 Route::get('/', [RoutingController::class, 'homePage']);
 
 Route::get('/home', [RoutingController::class, 'homePage']);
@@ -27,6 +23,9 @@ Route::get('/input-data', [RoutingController::class, 'inputData']);
 
 Route::get('/user-list', [RoutingController::class, 'userPage']);
 
+Route::post('/calculate', [EoqController::class, 'calculate'])->name('calculate');
+
+Route::get('/calculate', [EoqController::class, 'redirect'])->name('redirect');
 
 Route::get('/login', function () {
     return view('login');

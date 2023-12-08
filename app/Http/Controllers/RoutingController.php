@@ -18,7 +18,7 @@ class RoutingController extends Controller
 
     public function inputData(){
         return view('inputdata', [
-            'active' => 'Input'
+            'active' => 'input'
         ]);
     }
 
