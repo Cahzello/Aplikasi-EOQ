@@ -53,7 +53,7 @@ class ProductController extends Controller
 
         $data_calculate = Calculate::create($data);
 
-        return redirect('/data')->with('success', 'data berhasil di input')
+        return redirect('/data')->with('success', 'data berhasil di input');
     }
 
     public function safety_stock($penggunaanMax, $penggunaanAverage)
