@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CalculateController;
 use App\Http\Controllers\EoqController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoutingController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,9 +25,11 @@ Route::get('/input-data', [RoutingController::class, 'inputData']);
 
 Route::get('/user-list', [RoutingController::class, 'userPage']);
 
-Route::post('/calculate', [EoqController::class, 'calculate'])->name('calculate');
+Route::get('/data', [RoutingController::class, 'showData']);
 
-Route::get('/calculate', [EoqController::class, 'redirect'])->name('redirect');
+Route::post('/calculate', [ProductController::class, 'product'])->name('product');
+
+Route::get('/calculate', [ProductController::class, 'redirect'])->name('redirect');
 
 Route::get('/login', function () {
     return view('login');

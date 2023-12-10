@@ -25,7 +25,7 @@
                 <span>Input Bahan Baku</span></a>
         </li>
 
-        <li class="nav-item my-0 {{ $active === 'data' ? 'active' : ''  }}">
+        <li class="nav-item my-0 {{ $active === 'listdata' ? 'active' : ''  }}">
             <a class="nav-link" href="/data">
                 <i class="fas fa-fw fa-table" aria-hidden="true"></i>
                 <span>Data Hasil Perhitungan</span></a>

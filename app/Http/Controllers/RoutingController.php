@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Calculate;
 use Illuminate\Http\Request;
 
 class RoutingController extends Controller
@@ -25,6 +26,14 @@ class RoutingController extends Controller
     public function userPage (){
         return view('user', [
             'active' => 'user'
+        ]);
+    }
+
+    public function showData()
+    {   
+        return view('listdata',[
+            'active' => 'listdata',
+            'response' => Calculate::all()
         ]);
     }
 }

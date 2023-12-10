@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('calculates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id')->constrained();
+            $table->foreignId('product_id');
+            $table->string('bahan_baku');
             $table->integer('eoq');
             $table->decimal('rop');
             $table->decimal('safety_stock');
+            $table->integer('frekuensi');
             $table->timestamps();
         });
     }

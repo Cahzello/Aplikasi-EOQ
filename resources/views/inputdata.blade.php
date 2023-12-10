@@ -8,8 +8,17 @@
 
                 <h1 class="h3 mb-4 text-gray-800">Input Data</h1>
             </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="card-body">
-                <form action="{{ route('calculate') }}" method="post">
+                <form action="{{ route('product') }}" method="post">
                     @csrf
                     <div class="table-responsive">
                         <table class="table table-bordered ">
@@ -25,24 +34,25 @@
                             <tbody>
                                 <tr class="text-center">
                                     <td class="align-middle" rowspan="5">1</td>
-                                    <td rowspan="5"><input type="text" class="form-control h-100" name="bahanBaku">
+                                    <td rowspan="5"><input type="text" class="form-control h-100" name="bahan_baku">
                                     </td>
-                                    <td><input type="number" class="form-control" name="penggunaanTotal"></td>
-                                    <td rowspan="5"><input type="number" class="form-control" name="biayaPemesanan">
+                                    <td><input type="number" class="form-control" name="total_penggunaan_tahunan"></td>
+                                    <td rowspan="5"><input type="number" class="form-control" name="biaya_pemesanan">
                                     </td>
-                                    <td rowspan="5"><input type="number" class="form-control" name="biayaPerUnit"></td>
+                                    <td rowspan="5"><input type="number" class="form-control" name="biaya_penyimpanan">
+                                    </td>
                                 </tr>
                                 <tr class="text-center">
                                     <th>Kuantitas Penggunaan Maksimum Selama <br> Satu Tahun (Kg)</th>
                                 </tr>
                                 <tr class="text-center">
-                                    <th><input type="number" class="form-control" name="penggunaanMax"></th>
+                                    <th><input type="number" class="form-control" name="max_penggunaan_tahunan"></th>
                                 </tr>
                                 <tr class="text-center">
                                     <th>Kuantitas Penggunaan Rata-Rata Selama <br> Satu Tahun (Kg)</th>
                                 </tr>
                                 <tr class="text-center">
-                                    <th><input type="number" class="form-control" name="penggunaanAverage"></th>
+                                    <th><input type="number" class="form-control" name="average_penggunaan_tahunan"></th>
                                 </tr>
                             </tbody>
                         </table>
