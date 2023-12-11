@@ -16,8 +16,8 @@ return new class extends Migration
             $table->foreignId('product_id');
             $table->string('bahan_baku');
             $table->integer('eoq');
-            $table->decimal('rop');
-            $table->decimal('safety_stock');
+            $table->float('rop', 8, 2);
+            $table->float('safety_stock', 8, 2);
             $table->integer('frekuensi');
             $table->timestamps();
         });

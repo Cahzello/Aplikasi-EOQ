@@ -34,25 +34,25 @@
                             <tbody>
                                 <tr class="text-center">
                                     <td class="align-middle" rowspan="5">1</td>
-                                    <td rowspan="5"><input type="text" class="form-control h-100" name="bahan_baku">
+                                    <td rowspan="5"><input type="text" class="form-control h-100" value="Tepung" name="bahan_baku">
                                     </td>
-                                    <td><input type="number" class="form-control" name="total_penggunaan_tahunan"></td>
-                                    <td rowspan="5"><input type="number" class="form-control" name="biaya_pemesanan">
+                                    <td><input type="number" class="form-control" value="21550" name="total_penggunaan_tahunan"></td>
+                                    <td rowspan="5"><input type="number" class="form-control" value="575000" name="biaya_pemesanan">
                                     </td>
-                                    <td rowspan="5"><input type="number" class="form-control" name="biaya_penyimpanan">
+                                    <td rowspan="5"><input type="number" class="form-control" value="1850" name="biaya_penyimpanan">
                                     </td>
                                 </tr>
                                 <tr class="text-center">
                                     <th>Kuantitas Penggunaan Maksimum Selama <br> Satu Tahun (Kg)</th>
                                 </tr>
                                 <tr class="text-center">
-                                    <th><input type="number" class="form-control" name="max_penggunaan_tahunan"></th>
+                                    <td><input type="number" class="form-control" value="1950" name="max_penggunaan_tahunan"></td>
                                 </tr>
                                 <tr class="text-center">
                                     <th>Kuantitas Penggunaan Rata-Rata Selama <br> Satu Tahun (Kg)</th>
                                 </tr>
                                 <tr class="text-center">
-                                    <th><input type="number" class="form-control" name="average_penggunaan_tahunan"></th>
+                                    <td><input type="number" class="form-control" value="1796" name="average_penggunaan_tahunan"></td>
                                 </tr>
                             </tbody>
                         </table>

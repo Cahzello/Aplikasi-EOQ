@@ -32,7 +32,7 @@ class ProductController extends Controller
         $biayaPemesanan = $request->biaya_pemesanan;
         $biayaPerUnit = $request->biaya_penyimpanan;
         $penggunaanMax = $request->max_penggunaan_tahunan;
-        $penggunaanAverage = $request->average_pengguanaan_tahunan;
+        $penggunaanAverage = $request->average_penggunaan_tahunan;
 
         $totalEoq = sqrt(2 * $penggunaanTotal * $biayaPemesanan / $biayaPerUnit);
         $frekuensi = $penggunaanTotal / $totalEoq;
@@ -51,7 +51,7 @@ class ProductController extends Controller
 
         $data['product_id'] = $product_data->id;
 
-        $data_calculate = Calculate::create($data);
+        Calculate::create($data);
 
         return redirect('/data')->with('success', 'data berhasil di input');
     }
@@ -60,7 +60,9 @@ class ProductController extends Controller
     {
         $leadtime = 3;
 
-        return ($penggunaanMax - $penggunaanAverage) * $leadtime;
+        $hasil_sementara =  ($penggunaanMax - $penggunaanAverage) * $leadtime;
+
+        return $hasil_sementara;
     }
 
     public function reorder_point($penggunaanAverage, $safetyStock)
@@ -68,6 +70,8 @@ class ProductController extends Controller
         $leadtime = 3;
         $waktu = $penggunaanAverage / 30;
 
-        return $leadtime * $waktu + $safetyStock;
+        $hasil_sementara = ($leadtime * $waktu) + $safetyStock;
+
+        return $hasil_sementara;
     }
 }
