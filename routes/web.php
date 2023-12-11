@@ -27,6 +27,8 @@ Route::get('/user-list', [RoutingController::class, 'userPage']);
 
 Route::get('/data', [RoutingController::class, 'showData']);
 
+Route::get('/data/{data}/edit', [RoutingController::class, 'editPage'])->name('edit');
+
 Route::post('/calculate', [ProductController::class, 'product'])->name('product');
 
 Route::get('/calculate', [ProductController::class, 'redirect'])->name('redirect');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Calculate;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class RoutingController extends Controller
@@ -25,7 +26,6 @@ class RoutingController extends Controller
     }
 
     public function userPage (){
-        // dd(User::all());
 
         return view('user', [
             'active' => 'user',
@@ -40,4 +40,13 @@ class RoutingController extends Controller
             'responses' => Calculate::all()
         ]);
     }
+
+    public function editPage(Product $data)
+    {
+        return view('editpage', [
+            'active' => 'editpage',
+            'response' => $data
+        ]);
+    }
 }
+

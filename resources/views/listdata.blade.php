@@ -17,7 +17,9 @@
         @endif
         <div class="card-body">
             @if (empty($responses->count()))
-                <h1 class="h2 text-dark mb-4">No Data Available</h1>
+                <div class="d-flex align-items-center justify-content-center">
+                    <h1 class="h2 text-dark">No Data Available</h1>
+                </div>
             @else
                 @foreach ($responses as $response)
                     <h1 class="h2 text-dark mb-4">Hasil Perhitungan Bahan Baku {{ $response['bahan_baku'] }}</h1>
@@ -43,6 +45,10 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div>
+                            <a href="{{route('edit', ['data' => $response])}}" class="btn btn-primary">Edit Data</a>
+                            <button class="btn btn-danger">Delete Data</button>
+                        </div>
                     </div>
                     <hr>
                     <br>
