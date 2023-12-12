@@ -6,6 +6,8 @@ use App\Models\Calculate;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
+use PHPUnit\Event\Test\PrintedUnexpectedOutput;
 
 class ProductController extends Controller
 {
@@ -14,19 +16,8 @@ class ProductController extends Controller
         return back();
     }
 
-    public function product(Request $request)
+    public function calculation($request)
     {
-        $validatedData = $request->validate([
-            'bahan_baku' => 'required|string|max:255',
-            'total_penggunaan_tahunan' => 'required|numeric',
-            'biaya_pemesanan' => 'required|numeric',
-            'biaya_penyimpanan' => 'required|numeric',
-            'max_penggunaan_tahunan' => 'required|numeric',
-            'average_penggunaan_tahunan' => 'required|numeric',
-        ]);
-
-        $validatedData['user_id'] = User::find(1)->id;  
-
         $bahanBaku = $request->bahan_baku;
         $penggunaanTotal = $request->total_penggunaan_tahunan;
         $biayaPemesanan = $request->biaya_pemesanan;
@@ -39,19 +30,37 @@ class ProductController extends Controller
         $safetyStock = $this->safety_stock($penggunaanMax, $penggunaanAverage);
         $reorderPoint = $this->reorder_point($penggunaanAverage, $safetyStock);
 
-        $product_data = Product::create($validatedData);
-
-        $data = [
+        $arr = [
             'bahan_baku' => $bahanBaku,
-            'eoq' => $totalEoq,
+            'eoq' => intval($totalEoq),
             'rop' => $reorderPoint,
             'safety_stock' => $safetyStock,
-            'frekuensi' => $frekuensi
+            'frekuensi' => intval($frekuensi)
         ];
 
-        $data['product_id'] = $product_data->id;
+        return $arr;
+    }
 
-        Calculate::create($data);
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'bahan_baku' => 'required|string|max:255',
+            'total_penggunaan_tahunan' => 'required|numeric',
+            'biaya_pemesanan' => 'required|numeric',
+            'biaya_penyimpanan' => 'required|numeric',
+            'max_penggunaan_tahunan' => 'required|numeric',
+            'average_penggunaan_tahunan' => 'required|numeric',
+        ]);
+
+        $validatedData['user_id'] = User::find(1)->id;  
+
+        $arr = $this->calculation($request);
+
+        $product_data = Product::create($validatedData);
+
+        $arr['product_id'] = $product_data->id;
+
+        Calculate::create($arr);
 
         return redirect('/data')->with('success', 'data berhasil di input');
     }
@@ -73,5 +82,32 @@ class ProductController extends Controller
         $hasil_sementara = ($leadtime * $waktu) + $safetyStock;
 
         return $hasil_sementara;
+    }
+
+    public function update(Request $request, Product $data)
+    {
+        $validatedData = $request->validate([
+            'bahan_baku' => 'required|string|max:255',
+            'total_penggunaan_tahunan' => 'required|numeric',
+            'biaya_pemesanan' => 'required|numeric',
+            'biaya_penyimpanan' => 'required|numeric',
+            'max_penggunaan_tahunan' => 'required|numeric',
+            'average_penggunaan_tahunan' => 'required|numeric',
+        ]); 
+
+        $validatedData['user_id'] = $data->user_id;
+
+        $arr = $this->calculation($request);
+
+        Product::where('id', $data->id)->update($validatedData);
+
+        Calculate::where('product_id', $data->id)->update($arr);
+
+        return redirect('/data')->with('success', 'Data telah berhasil diubah');
+    }
+
+    public function delete()
+    {
+        
     }
 }

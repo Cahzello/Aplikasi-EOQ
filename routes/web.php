@@ -29,7 +29,9 @@ Route::get('/data', [RoutingController::class, 'showData']);
 
 Route::get('/data/{data}/edit', [RoutingController::class, 'editPage'])->name('edit');
 
-Route::post('/calculate', [ProductController::class, 'product'])->name('product');
+Route::put('/data/{data}/edit', [ProductController::class, 'update'])->name('update');
+
+Route::post('/calculate', [ProductController::class, 'store'])->name('store');
 
 Route::get('/calculate', [ProductController::class, 'redirect'])->name('redirect');
 

@@ -46,14 +46,33 @@
                             </tbody>
                         </table>
                         <div>
-                            <a href="{{route('edit', ['data' => $response])}}" class="btn btn-primary">Edit Data</a>
-                            <button class="btn btn-danger">Delete Data</button>
+                            <a href="{{ route('edit', ['data' => $response]) }}" class="btn btn-primary">Edit Data</a>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete Data</button>
                         </div>
                     </div>
                     <hr>
                     <br>
                 @endforeach
             @endif
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Delete Data?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Apakah anda mau menghapus data ini?</div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-danger" href="#">Delete</a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

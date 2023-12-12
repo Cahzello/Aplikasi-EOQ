@@ -18,7 +18,7 @@
                 </div>
             @endif
             <div class="card-body">
-                <form action="{{ route('product') }}" method="post">
+                <form action="{{ route('store') }}" method="post">
                     @csrf
                     <div class="table-responsive">
                         <table class="table table-bordered ">
