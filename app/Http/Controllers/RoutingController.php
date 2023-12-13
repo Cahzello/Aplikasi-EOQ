@@ -48,5 +48,6 @@ class RoutingController extends Controller
             'response' => $data
         ]);
     }
+
 }
 

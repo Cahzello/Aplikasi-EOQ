@@ -106,8 +106,11 @@ class ProductController extends Controller
         return redirect('/data')->with('success', 'Data telah berhasil diubah');
     }
 
-    public function delete()
+    public function delete(Product $data)
     {
-        
+        Product::where('id', $data->id)->delete();
+        Calculate::where('product_id', $data->id)->delete();
+
+        return redirect('/data')->with('success', 'Data telah berhasil dihapus');
     }
 }
