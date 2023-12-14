@@ -18,14 +18,28 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Hello!</h1>
                                     </div>
-                                    <form class="user">
+                                    @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            @foreach ($errors->all() as $error)
+                                                {{ $error }} <br>
+                                            @endforeach
+                                        </div>
+                                    @endif
+                                    @if (session()->has('loginError'))
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            {{ session('loginError') }}
+                                        </div>
+                                    @endif
+                                    <form action="{{ route('login') }}" method="POST" class="user">
+                                        @method('post')
+                                        @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                            <input type="text" name="username" class="form-control form-control-user"
+                                                value="{{old('username')}}" id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Enter Username...">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" name="password" class="form-control form-control-user"
                                                 id="exampleInputPassword" placeholder="Password">
                                         </div>
                                         <div class="form-group">
@@ -35,9 +49,7 @@
                                                     Me</label>
                                             </div>
                                         </div>
-                                        <a href="/home" class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </a>
+                                        <input class="btn btn-user btn-block btn-primary" type="submit" value="Login">
                                         <hr>
                                     </form>
                                     <div class="text-center">

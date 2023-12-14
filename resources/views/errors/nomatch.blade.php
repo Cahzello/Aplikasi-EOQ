@@ -16,7 +16,7 @@
                                 <p>Check if URL is correct.</p>
                             </div>
                             <div>
-                                <a class="btn btn-primary" href="{{ route('login') }}">To Login Page</a>
+                                <a class="btn btn-primary" href="{{ route('showLogin') }}">To Login Page</a>
                             </div>
                         </div>
                     </div>

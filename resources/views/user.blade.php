@@ -25,7 +25,7 @@
                             @foreach ($responses as $key => $response)
                                 <tr class="text-center">
                                     <td class="align-middle">{{ $key + 1 }}</td>
-                                    <td class="align-middle">{{ $response['name'] }}</td>
+                                    <td class="align-middle">{{ $response['username'] }}</td>
                                     <td class="align-middle">{{ $response['email'] }}</td>
                                     <td class="align-middle">{{ $response['role'] }}</td>
                                 </tr>

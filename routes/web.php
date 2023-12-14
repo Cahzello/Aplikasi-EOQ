@@ -36,12 +36,19 @@ Route::middleware('auth')->group(function () {
     
     Route::delete('/data/{data}/delete', [ProductController::class, 'delete'])->name('delete');
 
+    Route::post('/logout', [AutentikasiController::class, 'logout'])->name('logout');
+
 });
 
 
-Route::get('/login', [AutentikasiController::class, 'index'])->name('login');
+Route::get('/login', [AutentikasiController::class, 'showLogin'])->name('showLogin')->middleware('guest');
 
-Route::get('/register', [AutentikasiController::class, 'showRegister'])->name('regis');
+Route::post('/login', [AutentikasiController::class, 'login'])->name('login')->middleware('guest');
+
+Route::get('/register', [AutentikasiController::class, 'showRegister'])->name('showRegis');
+
+Route::post('/register', [AutentikasiController::class, 'register'])->name('register');
+
 
 Route::fallback(function () {
     return view('errors.404', [
