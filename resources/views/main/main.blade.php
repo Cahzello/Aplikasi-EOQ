@@ -23,8 +23,9 @@
 </head>
 @guest
 
-    <body class="bg-gradient-primary">
-        @yield('auth')
+    <body class="">
+        @yield('login')
+
         <!-- Bootstrap core JavaScript-->
         <script src="/vendor/jquery/jquery.min.js"></script>
         <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
