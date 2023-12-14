@@ -1,6 +1,6 @@
 @extends('main.main')
 
-@section('login')
+@section('auth')
 
 <div class="container">
     <div class="row justify-content-center">

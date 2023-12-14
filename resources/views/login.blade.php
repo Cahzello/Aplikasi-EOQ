@@ -1,6 +1,6 @@
 @extends('main.main')
 
-@section('login')
+@section('auth')
     <div class="container">
 
         <!-- Outer Row -->

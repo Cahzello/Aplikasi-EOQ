@@ -21,11 +21,10 @@
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
-@if (Route::currentRouteName() == 'login')
+@guest
 
     <body class="bg-gradient-primary">
-        @yield('login')
-
+        @yield('auth')
         <!-- Bootstrap core JavaScript-->
         <script src="/vendor/jquery/jquery.min.js"></script>
         <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -36,7 +35,11 @@
         <!-- Custom scripts for all pages-->
         <script src="/js/sb-admin-2.min.js"></script>
     </body>
-@else
+
+@endguest
+
+
+@auth
 
     <body id="page-top">
 
@@ -116,7 +119,8 @@
         <script src="/js/demo/chart-pie-demo.js"></script>
 
     </body>
-@endif
+@endauth
+
 
 
 </html>

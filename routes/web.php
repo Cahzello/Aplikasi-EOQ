@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\CalculateController;
-use App\Http\Controllers\EoqController;
+use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoutingController;
 use Illuminate\Support\Facades\Route;
@@ -17,35 +16,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [RoutingController::class, 'homePage']);
+Route::middleware('auth')->group(function () {
+    
+    Route::get('/', [RoutingController::class, 'homePage']);
+    
+    Route::get('/home', [RoutingController::class, 'homePage'])->name('homepage');
+    
+    Route::get('/input-data', [RoutingController::class, 'inputData']);
+    
+    Route::post('/input-data', [ProductController::class, 'store'])->name('store');
+    
+    Route::get('/user-list', [RoutingController::class, 'userPage']);
+    
+    Route::get('/data', [RoutingController::class, 'showData']);
+    
+    Route::get('/data/{data}/edit', [RoutingController::class, 'editPage'])->name('edit');
+    
+    Route::put('/data/{data}/edit', [ProductController::class, 'update'])->name('update');
+    
+    Route::delete('/data/{data}/delete', [ProductController::class, 'delete'])->name('delete');
 
-Route::get('/home', [RoutingController::class, 'homePage'])->name('homepage');
-
-Route::get('/input-data', [RoutingController::class, 'inputData']);
-
-Route::post('/input-data', [ProductController::class, 'store'])->name('store');
-
-Route::get('/user-list', [RoutingController::class, 'userPage']);
-
-Route::get('/data', [RoutingController::class, 'showData']);
-
-Route::get('/data/{data}/edit', [RoutingController::class, 'editPage'])->name('edit');
-
-Route::put('/data/{data}/edit', [ProductController::class, 'update'])->name('update');
-
-Route::delete('/data/{data}/delete', [ProductController::class, 'delete'])->name('delete');
+});
 
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+Route::get('/login', [AutentikasiController::class, 'index'])->name('login');
 
-Route::get('/register', function () {
-    return view('register');
-})->name('login');
+Route::get('/register', [AutentikasiController::class, 'showRegister'])->name('regis');
 
 Route::fallback(function () {
     return view('errors.404', [
         'active' => 'err'
     ]);
 });
+
+Route::any('{url}', function(){
+    return  view('errors.nomatch');    
+})->where('url', '.*');
+

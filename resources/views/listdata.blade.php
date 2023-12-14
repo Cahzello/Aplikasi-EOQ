@@ -51,7 +51,7 @@
                             <form action="{{route('delete', ['data' => $response['id']])}}" method="POST" class="px-2">
                                 @method('delete')
                                 @csrf
-                                <input type="submit" value="Delete Data"  class="btn btn-danger" onclick="confirm('Apakah anda mau menghapus data ini?')">
+                                <input type="submit" value="Delete Data"  class="btn btn-danger" onclick="return confirm('Apakah anda mau menghapus data ini?')">
                             </form>
                         </div>
                     </div>
