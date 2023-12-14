@@ -13,29 +13,30 @@
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item my-0 {{ $active === 'homepage' ? 'active' : ''  }}">
+        <li class="nav-item my-0 {{ $active === 'homepage' ? 'active' : '' }}">
             <a class="nav-link" href="/home">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
         </li>
 
-        <li class="nav-item my-0 {{ $active === 'input' ? 'active' : ''  }}">
+        <li class="nav-item my-0 {{ $active === 'input' ? 'active' : '' }}">
             <a class="nav-link" href="/input-data">
                 <i class="far fa-fw fa-edit" aria-hidden="true"></i>
                 <span>Input Bahan Baku</span></a>
         </li>
 
-        <li class="nav-item my-0 {{ $active === 'listdata' ? 'active' : ''  }}">
+        <li class="nav-item my-0 {{ $active === 'listdata' ? 'active' : '' }}">
             <a class="nav-link" href="/data">
                 <i class="fas fa-fw fa-table" aria-hidden="true"></i>
                 <span>Data Hasil Perhitungan</span></a>
         </li>
-
-        <li class="nav-item my-0 {{ $active === 'user' ? 'active' : ''  }}">
-            <a class="nav-link" href="/user-list">
-                <i class="fas fa-fw fa-user"></i>
-                <span>User</span></a>
-        </li>
+        @can('admin')
+            <li class="nav-item my-0 {{ $active === 'user' ? 'active' : '' }}">
+                <a class="nav-link" href="/user-list">
+                    <i class="fas fa-fw fa-user"></i>
+                    <span>User</span></a>
+            </li>
+        @endcan
 
     </ul>
     <!-- End of Sidebar -->

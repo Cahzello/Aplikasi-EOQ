@@ -26,7 +26,7 @@ class RoutingController extends Controller
     }
 
     public function userPage (){
-
+        $this->authorize('admin');
         return view('user', [
             'active' => 'user',
             'responses' => User::all()

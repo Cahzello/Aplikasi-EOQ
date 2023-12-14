@@ -51,8 +51,9 @@ class ProductController extends Controller
             'max_penggunaan_tahunan' => 'required|numeric',
             'average_penggunaan_tahunan' => 'required|numeric',
         ]);
+        $user_id = auth()->user()->id;
 
-        $validatedData['user_id'] = User::find(1)->id;  
+        $validatedData['user_id'] = $user_id;
 
         $arr = $this->calculation($request);
 
