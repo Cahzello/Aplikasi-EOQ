@@ -23,7 +23,7 @@
 </head>
 @if (Route::currentRouteName() == 'login')
 
-    <body class="bg-gradient-primary">
+    <body class="">
         @yield('login')
 
         <!-- Bootstrap core JavaScript-->
