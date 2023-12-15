@@ -61,9 +61,12 @@ class AutentikasiController extends Controller
 
         $validatedRequest['password'] = bcrypt($validatedRequest['password']);
 
+        $validatedRequest['role'] = 'user';
+        
+        // dd($validatedRequest);
         User::create($validatedRequest);
 
-        return redirect('/register')->withErrors('Form isi tidak sesuai kriteria.');
+        return redirect('/login')->with('success','Berhasil Terdaftar');
     }
 
     public function logout(Request $request)

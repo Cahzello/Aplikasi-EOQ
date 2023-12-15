@@ -23,7 +23,7 @@
 </head>
 @guest
 
-    <body class="">
+    <body class="bg-secondary">
         @yield('login')
 
         <!-- Bootstrap core JavaScript-->
