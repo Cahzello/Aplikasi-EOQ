@@ -14,9 +14,9 @@ Aplikasi ini memudahkan pengguna menghitung Economic Order Quantity (EOQ), metod
 Shidqia Website, solusi lengkap untuk manajemen persediaan yang efisien. Gunakan aplikasi kami dan tingkatkan kinerja rantai pasok Anda!
 
 
-# Setup Process
+# Proses penyiapan
 
-## Prerequisite
+## Persyaratan
 
 Sebelum memulai, pastikan Anda telah menginstal perangkat lunak berikut pada mesin Anda:
 
@@ -24,7 +24,7 @@ Sebelum memulai, pastikan Anda telah menginstal perangkat lunak berikut pada mes
 - Versi composer minimal `2.5.1`
 - MySQL Database
 
-## Installation
+## Pemasangan
 
 1. Cloning repositori ini:
 ```
@@ -52,7 +52,7 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-6. Buat database MySQL untuk aplikasi, dengan nama `cahzello_blog`.
+6. Buat database MySQL untuk aplikasi, dengan nama `shidqia_db`.
 
 <br>
 
