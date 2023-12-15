@@ -41,22 +41,22 @@ class AutentikasiController extends Controller
     public function register(Request $request)
     {
         $validatedRequest = $request->validate([
-            'username' => 'required|min:6|max:255|unique:users',
-            'password' => 'required|min:6|max:255',
+            'username' => 'required|min:3|max:255|unique:users',
+            'password' => 'required|min:3|max:255',
             'email' => 'required|email:dns|unique:users'
         ],[
             'username.required' => 'Masukan username anda!',
             'password.required' => 'Masukan password anda!',
             'email.required' => 'Masukan email anda!',
-            'username.min' => 'Jumlah huruf username harus melebihi 6 huruf!',
-            'password.min' => 'Jumlah huruf password harus melebihi 6 huruf!',
+            'username.min' => 'Jumlah huruf username harus melebihi 3 huruf!',
+            'password.min' => 'Jumlah huruf password harus melebihi 3 huruf!',
             'email.unique' => 'Email telah terpakai, coba gunakan email yang lain!',
             'username.unique' => 'Usename telah terpakai, coba gunakan Usename yang lain!',
         ]);
         $repeatedpw = $request->repeatedpw;
 
         if($validatedRequest['password'] !== $repeatedpw){
-            return redirect('/register')->withErrors('Password tidak sama!');    
+            return redirect('/register')->withErrors('Password tidak sama!')->onlyInput('username', 'email');    
         }
 
         $validatedRequest['password'] = bcrypt($validatedRequest['password']);

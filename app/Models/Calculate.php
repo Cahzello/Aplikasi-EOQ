@@ -17,4 +17,9 @@ class Calculate extends Model
         'safety_stock',
         'frekuensi'
     ];
+
+    public function products()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

@@ -16,30 +16,7 @@ class ProductController extends Controller
         return back();
     }
 
-    public function calculation($request)
-    {
-        $bahanBaku = $request->bahan_baku;
-        $penggunaanTotal = $request->total_penggunaan_tahunan;
-        $biayaPemesanan = $request->biaya_pemesanan;
-        $biayaPerUnit = $request->biaya_penyimpanan;
-        $penggunaanMax = $request->max_penggunaan_tahunan;
-        $penggunaanAverage = $request->average_penggunaan_tahunan;
 
-        $totalEoq = sqrt(2 * $penggunaanTotal * $biayaPemesanan / $biayaPerUnit);
-        $frekuensi = $penggunaanTotal / $totalEoq;
-        $safetyStock = $this->safety_stock($penggunaanMax, $penggunaanAverage);
-        $reorderPoint = $this->reorder_point($penggunaanAverage, $safetyStock);
-
-        $arr = [
-            'bahan_baku' => $bahanBaku,
-            'eoq' => intval($totalEoq),
-            'rop' => $reorderPoint,
-            'safety_stock' => $safetyStock,
-            'frekuensi' => intval($frekuensi)
-        ];
-
-        return $arr;
-    }
 
     public function store(Request $request)
     {
@@ -66,13 +43,42 @@ class ProductController extends Controller
         return redirect('/data')->with('success', 'data berhasil di input');
     }
 
+
+    public function calculation($request)
+    {
+        $bahanBaku = $request->bahan_baku;
+        $penggunaanTotal = $request->total_penggunaan_tahunan;
+        $biayaPemesanan = $request->biaya_pemesanan;
+        $biayaPerUnit = $request->biaya_penyimpanan;
+        $penggunaanMax = $request->max_penggunaan_tahunan;
+        $penggunaanAverage = $request->average_penggunaan_tahunan;
+
+        $totalEoq = sqrt(2 * $penggunaanTotal * $biayaPemesanan / $biayaPerUnit);
+        $frekuensi = $penggunaanTotal / $totalEoq;
+        $safetyStock = $this->safety_stock($penggunaanMax, $penggunaanAverage);
+        $reorderPoint = $this->reorder_point($penggunaanAverage, $safetyStock);
+
+        $arr = [
+            'bahan_baku' => $bahanBaku,
+            'eoq' => intval($totalEoq),
+            'rop' => $reorderPoint,
+            'safety_stock' => $safetyStock,
+            'frekuensi' => intval($frekuensi)
+        ];
+
+        return $arr;
+    }
+
     public function safety_stock($penggunaanMax, $penggunaanAverage)
     {
         $leadtime = 3;
 
-        $hasil_sementara =  ($penggunaanMax - $penggunaanAverage) * $leadtime;
-
-        return $hasil_sementara;
+        $hasil_sementara =  $penggunaanMax - $penggunaanAverage;
+        // dd($hasil_sementara);
+        $hasil = $hasil_sementara * $leadtime;
+        dd($hasil);
+        
+        return $hasil;
     }
 
     public function reorder_point($penggunaanAverage, $safetyStock)
@@ -94,7 +100,7 @@ class ProductController extends Controller
             'biaya_penyimpanan' => 'required|numeric',
             'max_penggunaan_tahunan' => 'required|numeric',
             'average_penggunaan_tahunan' => 'required|numeric',
-        ]); 
+        ]);
 
         $validatedData['user_id'] = $data->user_id;
 

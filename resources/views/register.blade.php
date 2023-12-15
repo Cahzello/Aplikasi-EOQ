@@ -44,7 +44,7 @@
                                             {{ session('loginError') }}
                                         </div>
                                     @endif
-                                    <form action="{{route('register')}}" method="POST" class="mx-1 mx-md-4">
+                                    <form action="{{ route('register') }}" method="POST" class="mx-1 mx-md-4">
                                         @method('post')
                                         @csrf
                                         <div class="form-group">
@@ -54,7 +54,8 @@
                                                             class="fas fa-user fa-lg fa-fw"></i></span>
                                                 </div>
                                                 <input type="text" id="form3Example1c" class="form-control"
-                                                   name="username" placeholder="Your Username" />
+                                                    value="{{ old('username') }}" name="username"
+                                                    placeholder="Your Username" />
                                             </div>
                                         </div>
 
@@ -65,7 +66,7 @@
                                                             class="fas fa-envelope fa-lg fa-fw"></i></span>
                                                 </div>
                                                 <input type="email" id="form3Example3c" class="form-control"
-                                                    name="email" placeholder="Your Email" />
+                                                    value="{{ old('email') }}" name="email" placeholder="Your Email" />
                                             </div>
                                         </div>
 

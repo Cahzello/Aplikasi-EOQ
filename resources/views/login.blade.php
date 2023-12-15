@@ -70,7 +70,7 @@
                                 </div>
                             @endif
                             @if (session()->has('success'))
-                                <div class="alert alert-sucesss alert-dismissible fade show" role="alert">
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{ session('success') }}
                                 </div>
                             @endif
@@ -79,7 +79,7 @@
                                 @csrf
                                 <!-- Email input -->
                                 <div class="form-group">
-                                    <label class="form-label" for="form1Example13">Username!</label>
+                                    <label class="form-label" for="form1Example13">Username</label>
                                     <input name="username" type="text" id="form1Example13"
                                         class="form-control form-control-lg" />
                                 </div>

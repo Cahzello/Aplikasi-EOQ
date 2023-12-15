@@ -35,9 +35,13 @@ class RoutingController extends Controller
 
     public function showData()
     {   
+        $user = User::find(auth()->user()->id);
+        $products = $user->products;
+        $calculates = $products->flatMap->calculates;
+
         return view('listdata',[
             'active' => 'listdata',
-            'responses' => Calculate::all()
+            'responses' => $calculates,
         ]);
     }
 

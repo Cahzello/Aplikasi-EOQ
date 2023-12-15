@@ -18,4 +18,14 @@ class Product extends Model
         'max_penggunaan_tahunan',
         'average_penggunaan_tahunan'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function calculates()
+    {
+        return $this->hasMany(Calculate::class);
+    }
 }
