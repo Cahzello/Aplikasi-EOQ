@@ -87,7 +87,7 @@
 
                                     </form>
                                     <div class="text-center">
-                                        <a class="small" href="/login">Create an Account!</a>
+                                        <a class="small" href="/login">already have an account?</a>
                                     </div>
                                 </div>
 

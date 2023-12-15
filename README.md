@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+<!-- ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
@@ -63,4 +63,71 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). -->
+
+README Aplikasi Perhitungan EOQ dengan Laravel
+
+## Deskripsi Aplikasi
+Aplikasi ini dibuat untuk membantu pengguna dalam menghitung Economic Order Quantity (EOQ) atau Kuantitas Pemesanan Ekonomis. EOQ adalah metode perhitungan optimal untuk menentukan jumlah pemesanan barang yang menghasilkan total biaya persediaan terendah.
+
+## Fitur Aplikasi
+Perhitungan EOQ Otomatis: Aplikasi ini memungkinkan pengguna memasukkan data seperti biaya pemesanan, biaya penyimpanan, dan permintaan tahunan untuk mendapatkan EOQ secara otomatis.
+
+Riwayat Perhitungan: Pengguna dapat melihat riwayat perhitungan EOQ sebelumnya untuk memantau dan membandingkan hasil.
+
+Manajemen Barang: Fitur manajemen barang memungkinkan pengguna untuk menyimpan dan mengelola data barang secara efisien.
+
+## Cara Pemasangan menggunakan Laravel
+Persyaratan
+PHP >= 7.3
+Composer
+MySQL atau database yang sesuai
+
+Langkah-langkah Instalasi
+Clone Repositori:
+
+bash
+git clone https://github.com/username/nama-repositori.git
+
+
+Masuk ke Direktori Aplikasi:
+
+bash
+cd nama-repositori
+
+Instal Dependensi:
+
+composer install
+
+Buat Salinan File .env:
+
+bash
+
+cp .env.example .env
+
+Atur Konfigurasi Database:
+
+Buka file .env dan atur konfigurasi database (DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD).
+
+Generate Key Aplikasi:
+
+vbnet
+php artisan key:generate
+
+Jalankan Migrasi Database:
+
+
+php artisan migrate
+
+Jalankan Aplikasi:
+
+
+php artisan serve
+
+Akses Aplikasi:
+Buka browser dan kunjungi http://localhost:8000 untuk mengakses aplikasi.
+
+## Kontribusi
+Jika Anda ingin berkontribusi pada pengembangan aplikasi ini, silakan buat pull request ke repositori ini.
+
+Terima kasih telah menggunakan Aplikasi Perhitungan EOQ dengan Laravel! Jika Anda memiliki pertanyaan atau masalah, silakan buat issue di repositori ini.
