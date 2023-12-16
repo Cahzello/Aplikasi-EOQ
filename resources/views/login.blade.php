@@ -81,7 +81,7 @@
                                 <div class="form-group">
                                     <label class="form-label" for="form1Example13">Username</label>
                                     <input name="username" type="text" id="form1Example13"
-                                        class="form-control form-control-lg" />
+                                        value="{{old('username')}}" class="form-control form-control-lg" />
                                 </div>
 
                                 <!-- Password input -->

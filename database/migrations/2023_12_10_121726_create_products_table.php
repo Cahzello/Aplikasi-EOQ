@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('average_penggunaan_tahunan');
             $table->string('biaya_pemesanan');
             $table->string('biaya_penyimpanan');
+            $table->string('average_pembelian');
+            $table->string('leadtime');
             $table->timestamps();
         });
     }

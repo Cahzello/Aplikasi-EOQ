@@ -15,7 +15,9 @@ class Calculate extends Model
         'eoq',
         'rop',
         'safety_stock',
-        'frekuensi'
+        'frekuensi',
+        'frekuensi_konvensional',
+        'average_pembelian'
     ];
 
     public function products()

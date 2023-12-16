@@ -16,7 +16,10 @@ class Product extends Model
         'biaya_pemesanan',
         'biaya_penyimpanan',
         'max_penggunaan_tahunan',
-        'average_penggunaan_tahunan'
+        'average_penggunaan_tahunan',
+        'leadtime',
+        'average_pembelian',
+
     ];
 
     public function user()

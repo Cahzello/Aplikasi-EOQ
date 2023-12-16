@@ -16,8 +16,6 @@ class ProductController extends Controller
         return back();
     }
 
-
-
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -27,7 +25,10 @@ class ProductController extends Controller
             'biaya_penyimpanan' => 'required|numeric',
             'max_penggunaan_tahunan' => 'required|numeric',
             'average_penggunaan_tahunan' => 'required|numeric',
+            'average_pembelian' => 'required|numeric',
+            'leadtime' => 'required|numeric',
         ]);
+
         $user_id = auth()->user()->id;
 
         $validatedData['user_id'] = $user_id;
@@ -52,38 +53,40 @@ class ProductController extends Controller
         $biayaPerUnit = $request->biaya_penyimpanan;
         $penggunaanMax = $request->max_penggunaan_tahunan;
         $penggunaanAverage = $request->average_penggunaan_tahunan;
+        $leadtime = $request->leadtime;
+        $average_pembelian = $request->average_pembelian;
+        $frekuensi_konvensional = 12;
 
         $totalEoq = sqrt(2 * $penggunaanTotal * $biayaPemesanan / $biayaPerUnit);
         $frekuensi = $penggunaanTotal / $totalEoq;
-        $safetyStock = $this->safety_stock($penggunaanMax, $penggunaanAverage);
-        $reorderPoint = $this->reorder_point($penggunaanAverage, $safetyStock);
+        $safetyStock = $this->safety_stock($penggunaanMax, $penggunaanAverage, $leadtime);
+        $reorderPoint = $this->reorder_point($penggunaanAverage, $safetyStock, $leadtime);
+
 
         $arr = [
             'bahan_baku' => $bahanBaku,
-            'eoq' => intval($totalEoq),
+            'eoq' => $totalEoq,
             'rop' => $reorderPoint,
             'safety_stock' => $safetyStock,
-            'frekuensi' => intval($frekuensi)
+            'frekuensi' => $frekuensi,
+            'frekuensi_konvensional' => $frekuensi_konvensional,
+            'average_pembelian' => $average_pembelian
         ];
 
         return $arr;
     }
 
-    public function safety_stock($penggunaanMax, $penggunaanAverage)
+    public function safety_stock($penggunaanMax, $penggunaanAverage, $leadtime)
     {
-        $leadtime = 3;
 
         $hasil_sementara =  $penggunaanMax - $penggunaanAverage;
-        // dd($hasil_sementara);
         $hasil = $hasil_sementara * $leadtime;
-        dd($hasil);
         
         return $hasil;
     }
 
-    public function reorder_point($penggunaanAverage, $safetyStock)
+    public function reorder_point($penggunaanAverage, $safetyStock, $leadtime)
     {
-        $leadtime = 3;
         $waktu = $penggunaanAverage / 30;
 
         $hasil_sementara = ($leadtime * $waktu) + $safetyStock;

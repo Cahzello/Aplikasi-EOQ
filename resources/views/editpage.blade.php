@@ -8,6 +8,14 @@
                 <a class="btn btn-primary mb-4" href="/data"><i class="fas fa-fw fa-arrow-left"></i> Back</a>
                 <h1 class="h2 mb-4 text-gray-800">Edit Data {{ $response->bahan_baku }} </h1>
                 <p>Qui culpa adipisicing minim ut minim deserunt aliquip cupidatat.</p>
+                <div class="alert alert-info">
+                    <p>Catatan:</p>
+                    <p>
+                        Jika hasil <b>Kuantitas Penggunaan Rata-Rata Selama Satu Tahun</b>
+                        merupakan bilangan desimal, maka input dengan nilai desimalnya.
+                    </p>
+                    <p>Input angka desimal maksimal 2 angka dibelakang koma!</p>
+                </div>
             </div>
             @if ($errors->any())
                 <div class="alert alert-danger">
@@ -26,8 +34,9 @@
                         <table class="table table-bordered ">
                             <thead>
                                 <tr class="text-center">
-                                    <th class="align-middle">No</th>
-                                    <th class="align-middle">Bahan Baku</th>
+
+                                    <th class="align-middle">Nama Bahan Baku</th>
+                                    <th class="align-middle">Rata-Rata Pembelian Selama Setahun</th>
                                     <th class="align-middle">Total Kuantitas Penggunaan Selama <br> Satu Tahun (Kg)</th>
                                     <th class="align-middle">Biaya Pemesanan Bahan Baku</th>
                                     <th class="align-middle">Biaya Penyimpanan Per Unit</th>
@@ -35,35 +44,40 @@
                             </thead>
                             <tbody>
                                 <tr class="text-center">
-                                    <td class="align-middle" rowspan="5">1</td>
-                                    <td rowspan="5"><input type="text" class="form-control h-100"
-                                            value="{{ $response->bahan_baku }}" name="bahan_baku">
+
+                                    <td rowspan="5"><input type="text" class="form-control h-100" value="{{ $response->bahan_baku}}"
+                                            name="bahan_baku">
                                     </td>
-                                    <td><input type="number" class="form-control"
-                                            value="{{ $response->total_penggunaan_tahunan }}"
+                                    <td rowspan="5"><input type="number" class="form-control h-100" value="{{ $response->average_pembelian }}"
+                                            name="average_pembelian">
+                                    </td>
+                                    <td><input type="number" class="form-control" value="{{ $response->total_penggunaan_tahunan }}"
                                             name="total_penggunaan_tahunan"></td>
-                                    <td rowspan="5"><input type="number" class="form-control"
-                                            value="{{ $response->biaya_pemesanan }}" name="biaya_pemesanan">
+                                    <td><input type="number" class="form-control" value="{{ $response->biaya_pemesanan }}" name="biaya_pemesanan">
                                     </td>
-                                    <td rowspan="5"><input type="number" class="form-control"
-                                            value="{{ $response->biaya_penyimpanan }}" name="biaya_penyimpanan">
+                                    <td rowspan="5"><input type="number" class="form-control" value="{{ $response->biaya_penyimpanan }}"
+                                            name="biaya_penyimpanan">
                                     </td>
                                 </tr>
                                 <tr class="text-center">
                                     <th>Kuantitas Penggunaan Maksimum Selama <br> Satu Tahun (Kg)</th>
+                                    <th>Waktu yang dibutuhkan sampai bahan baku sampai (dalam hari)</th>
                                 </tr>
                                 <tr class="text-center">
-                                    <td><input type="number" class="form-control"
-                                            value="{{ $response->max_penggunaan_tahunan }}" name="max_penggunaan_tahunan">
-                                    </td>
+                                    <td><input type="number" class="form-control" value="{{ $response->max_penggunaan_tahunan }}"
+                                            name="max_penggunaan_tahunan"></td>
+                                    <td rowspan="3"><input type="number" class="form-control" value="{{ $response->leadtime }}"
+                                            name="leadtime"></td>
                                 </tr>
                                 <tr class="text-center">
                                     <th>Kuantitas Penggunaan Rata-Rata Selama <br> Satu Tahun (Kg)</th>
                                 </tr>
                                 <tr class="text-center">
-                                    <td><input type="number" class="form-control"
-                                            value="{{ $response->average_penggunaan_tahunan }}"
+                                    <td><input step="0.01" type="number" class="form-control" value="{{ $response->average_penggunaan_tahunan }}"
                                             name="average_penggunaan_tahunan"></td>
+                                </tr>
+                                <tr>
+
                                 </tr>
                             </tbody>
                         </table>

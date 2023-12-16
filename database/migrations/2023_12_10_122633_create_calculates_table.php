@@ -19,6 +19,8 @@ return new class extends Migration
             $table->decimal('rop', 10, 1);
             $table->decimal('safety_stock', 10, 1);
             $table->integer('frekuensi');
+            $table->integer('frekuensi_konvensional');
+            $table->integer('average_pembelian');
             $table->timestamps();
         });
     }
