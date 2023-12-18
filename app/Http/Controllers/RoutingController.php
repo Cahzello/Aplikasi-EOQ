@@ -45,6 +45,14 @@ class RoutingController extends Controller
         ]);
     }
 
+    public function listData(Calculate $data)
+    {
+        return view('details', [
+            'active' => 'listdata',
+            'response' => $data
+        ]);
+    }
+
     public function editPage(Product $data)
     {
         return view('editpage', [

@@ -29,6 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/user-list', [RoutingController::class, 'userPage']);
     
     Route::get('/data', [RoutingController::class, 'showData']);
+
+    Route::get('/data/{data}', [RoutingController::class, 'listData'])->name('details');
     
     Route::get('/data/{data}/edit', [RoutingController::class, 'editPage'])->name('edit');
     

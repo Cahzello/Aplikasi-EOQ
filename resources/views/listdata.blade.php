@@ -2,7 +2,10 @@
 
 
 @section('container')
-    <div class="card mx-4 my-4 p-4 card-shadow">
+    <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Data Hasil Perhitungan</h1>
+        </div>
         @if (session()->has('success'))
             <div class="alert alert-success d-flex align-items-center" role="alert">
                 <div class="brand-icon px-3">
@@ -15,73 +18,49 @@
                 </div>
             </div>
         @endif
-        <div class="card-body">
-            @if (empty($responses->count()))
-                <div class="d-flex flex-column align-items-center justify-content-center">
-                    <h1 class="h2 text-dark">Belum Ada Data.</h1>
-                    <a href="/input-data">Klik disini untuk membuat data</a>
-                </div>
-            @else
-                @foreach ($responses as $response)
-                    <h1 class="h2 text-dark mb-4">Hasil Perhitungan Bahan Baku {{ $response['bahan_baku'] }}</h1>
-                    <div class="mb-3 table-responsive">
-                        <table class="table table-striped table-bordered text-dark">
-                            <thead>
-                                <tr class="text-center">
-                                    <th colspan="2" class="align-middle">Metode Konvensional</th>
-                                    <th colspan="2" class="align-middle">Metode EOQ</th>
-                                    <th colspan="2" class="align-middle">Selisih Kuantitas</th>
-                                </tr>
-                                <tr class="text-center">
-                                    <th class="align-middle">Pembelian</th>
-                                    <th class="align-middle">Frekuensi</th>
-                                    <th class="align-middle">Pembelian</th>
-                                    <th class="align-middle">Frekuensi</th>
-                                    <th class="align-middle">Pembelian</th>
-                                    <th class="align-middle">Frekuensi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="text-center">
-                                    <td class="align-middle">{{ $response['average_pembelian'] }}</td>
-                                    <td class="align-middle">{{ $response['frekuensi_konvensional'] }}</td>
-                                    <td class="align-middle"> {{ $response['eoq'] }} </td>
-                                    <td class="align-middle">{{ $response['frekuensi'] }} </td>
-                                    <td class="align-middle">{{ $response['eoq'] - $response['average_pembelian'] }} </td>
-                                    <td class="align-middle">{{ $response['frekuensi_konvensional'] - $response['frekuensi'] }} </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <table class="w-25 table table-striped table-bordered text-dark">
-                            <thead>
-                                <tr class="text-center">
-                                    <th class="align-middle">Safety Stock</th>
-                                    <th class="align-middle">Reorder Point</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="text-center">
-                                    <td class="align-middle">{{ $response['safety_stock'] }}</td>
-                                    <td class="align-middle">{{ $response['rop'] }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="d-flex">
-                        <a href="{{ route('edit', ['data' => $response]) }}" class="btn btn-primary">Edit Data</a>
-                        <form action="{{ route('delete', ['data' => $response['id']]) }}" method="POST"
-                            class="px-2">
-                            @method('delete')
-                            @csrf
-                            <input type="submit" value="Delete Data" class="btn btn-danger"
-                                onclick="return confirm('Apakah anda mau menghapus data ini?')">
-                        </form>
-                    </div>
-                    <hr>
-                    <br>
-                @endforeach
-            @endif
-        </div>
     </div>
 
+
+    @if (empty($responses->count()))
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <h1 class="h2 text-dark">Belum Ada Data.</h1>
+            <a href="/input-data">Klik disini untuk membuat data</a>
+        </div>
+    @else
+        <div class="py-2 bg-body-tertiary">
+            <div class="container mx-0 ">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+
+                    @foreach ($responses as $response)
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <div class="card-body">
+                                    <h3 class="card-title">Bahan Baku {{ $response['bahan_baku'] }}</h3>
+                                    <p class="card-text">Dibuat Tanggal: {{ $response['created_at']->format('d F Y') }}</p>
+                                    <p class="card-text">Terakhir Update Tanggal:
+                                        {{ $response['updated_at']->format('d F Y') }}
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a href="{{ route('details', ['data' => $response]) }}"
+                                                class="btn btn-primary">View</a>
+                                        </div>
+                                        <div>
+                                            <small class="text-body-secondary">Created: </small>
+                                            <small class="text-body-secondary">
+                                                {{ $response['created_at']->diffForHumans() }}
+                                            </small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+
+
+                </div>
+
+            </div>
+        </div>
+    @endif
 @endsection

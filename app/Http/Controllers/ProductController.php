@@ -6,8 +6,6 @@ use App\Models\Calculate;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
-use PHPUnit\Event\Test\PrintedUnexpectedOutput;
 
 class ProductController extends Controller
 {
@@ -103,6 +101,8 @@ class ProductController extends Controller
             'biaya_penyimpanan' => 'required|numeric',
             'max_penggunaan_tahunan' => 'required|numeric',
             'average_penggunaan_tahunan' => 'required|numeric',
+            'average_pembelian' => 'required|numeric',
+            'leadtime' => 'required|numeric',
         ]);
 
         $validatedData['user_id'] = $data->user_id;
