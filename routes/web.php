@@ -21,6 +21,8 @@ Route::get('/', [RoutingController::class, 'homePage']);
 
 Route::get('/home', [RoutingController::class, 'homePage']);
 
+Route::get('/userProfile', [RoutingController::class, 'userProfile']);
+
 Route::get('/input-data', [RoutingController::class, 'inputData']);
 
 Route::get('/user-list', [RoutingController::class, 'userPage']);

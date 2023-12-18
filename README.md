@@ -57,6 +57,14 @@ php artisan key:generate
 <br>
 
 7. Perbarui file `.env` dengan kredensial basis data MySQL Anda (seperti koneksi basis data).
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=shidqia_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
 <br>
 
