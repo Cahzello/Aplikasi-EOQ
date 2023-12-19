@@ -17,31 +17,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth')->group(function () {
-    
+
     Route::get('/', [RoutingController::class, 'homePage']);
-    
+
     Route::get('/home', [RoutingController::class, 'homePage'])->name('homepage');
 
-Route::get('/userProfile', [RoutingController::class, 'userProfile']);
-    
+    Route::get('/userProfile', [RoutingController::class, 'userProfile']);
+
     Route::get('/input-data', [RoutingController::class, 'inputData']);
-    
+
     Route::post('/input-data', [ProductController::class, 'store'])->name('store');
-    
+
     Route::get('/user-list', [RoutingController::class, 'userPage']);
-    
+
     Route::get('/data', [RoutingController::class, 'showData']);
 
     Route::get('/data/{data}', [RoutingController::class, 'listData'])->name('details');
-    
+
     Route::get('/data/{data}/edit', [RoutingController::class, 'editPage'])->name('edit');
-    
+
     Route::put('/data/{data}/edit', [ProductController::class, 'update'])->name('update');
-    
+
     Route::delete('/data/{data}/delete', [ProductController::class, 'delete'])->name('delete');
 
     Route::post('/logout', [AutentikasiController::class, 'logout'])->name('logout');
-
 });
 
 
@@ -60,7 +59,6 @@ Route::fallback(function () {
     ]);
 });
 
-Route::any('{url}', function(){
-    return  view('errors.nomatch');    
+Route::any('{url}', function () {
+    return  view('errors.nomatch');
 })->where('url', '.*');
-
