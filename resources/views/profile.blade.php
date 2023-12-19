@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+@extends('main.main')
+
+@section('container')
     <style>
         body {
             background-color: #f8f9fa;
@@ -99,46 +95,48 @@
             background-color: #c82333;
         }
     </style>
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="mb-0">User Profile</h3>
-            </div>
-            <div class="card-body">
-                <form method="post" action="update_profile.php" enctype="multipart/form-data">
-                    <div class="profile-container">
-                        <div class="profile-picture-container">
-                            <img src="icon.jpg" alt="Profile Picture" class="profile-picture" id="previewImage">
-                        </div>
-                        <div class="file-label-container">
-                            <div class="border-text">Max size photo 512x512 <br> bisa ganti PP</div>
-                            <label for="profile-picture" class="file-label mt-1">Choose File
-                                <input type="file" class="form-control file-input" id="profile-picture" name="profile_picture" accept="image/*" onchange="previewFile()">
-                            </label>
-                        </div>
-                    </div>
-                </form>
+    <div class="card mx-4 my-4 card-shadow">
+        <div class="card-header d-flex">
+            <a class="btn btn-primary " href="/home"><i class="fas fa-fw fa-arrow-left"></i> Back</a>
+            <h3 class="mb-0 mx-4">User Profile</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" action="update_profile.php" enctype="multipart/form-data">
+                <label for="usernmae" class="form-label">Change Username: </label>
+                <div class="input-group mb-3">
+                    <input type="username" value="{{ $response['username'] }}" class="form-control" placeholder="Enter your new username" id="username" name="username">
+                </div>
+                <input value="Update Username" type="submit" class="btn btn-success">
+            </form>
 
-                <form method="post" action="update_profile.php" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username:</label>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
-                        <button type="button" class="btn btn-update mt-1">Update Username</button>
-                    </div>
-                </form>
+            <form method="post" action="update_profile.php" enctype="multipart/form-data" class="mt-3">
+                <label for="password" class="form-label">Change Password: </label>
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control" placeholder="Enter your new password" id="password" name="password">
+                    <button class="btn btn-outline-secondary" type="button" id="button-password"><i class="far fa-eye"></i></button>
+                </div>
+                <input value="Update Password" type="submit" class="btn btn-success">
+            </form>
 
-                <form method="post" action="update_profile.php" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password:</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
-                        <button type="button" class="btn btn-update mt-1">Update Password</button>
-                    </div>
-                </form>
-            </div>
+
         </div>
     </div>
+    <script>
+        document.getElementById("button-password").addEventListener("click", function () {
+            var passwordInput = document.getElementById("password");
+            var buttonIcon = document.querySelector("#togglePassword i");
+    
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                buttonIcon.classList.remove("far", "fa-eye");
+                buttonIcon.classList.add("fas", "fa-eye-slash");
+            } else {
+                passwordInput.type = "password";
+                buttonIcon.classList.remove("fas", "fa-eye-slash");
+                buttonIcon.classList.add("far", "fa-eye");
+            }
+        });
+    </script>
     <script>
         function previewFile() {
             var preview = document.getElementById('previewImage');
@@ -146,12 +144,11 @@
             var file = fileInput.files[0];
             var reader = new FileReader();
 
-            reader.onloadend = function () {
+            reader.onloadend = function() {
                 preview.src = reader.result;
             }
 
             file ? reader.readAsDataURL(file) : preview.src = "icon.jpg";
         }
     </script>
-</body>
-</html>
+@endsection

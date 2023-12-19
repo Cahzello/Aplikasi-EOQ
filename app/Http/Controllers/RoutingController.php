@@ -13,14 +13,22 @@ class RoutingController extends Controller
         return back();
     }
 
+    public function no_match()
+    {
+        return redirect('/login');
+    }
+
     public function homePage() {
         return view('homepage', [
             'active' => 'homepage'
         ]);
     }
     public function userProfile() {
+        $user = User::find(auth()->user()->id);
+
         return view('profile', [
-            'active' => 'profile'
+            'active' => 'profile',
+            'response' => $user
         ]);
     }
 

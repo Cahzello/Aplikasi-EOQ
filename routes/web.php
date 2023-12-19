@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/home', [RoutingController::class, 'homePage'])->name('homepage');
 
-    Route::get('/userProfile', [RoutingController::class, 'userProfile']);
+    Route::get('/user-profile', [RoutingController::class, 'userProfile']);
 
     Route::get('/input-data', [RoutingController::class, 'inputData']);
 
@@ -41,8 +41,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/data/{data}/delete', [ProductController::class, 'delete'])->name('delete');
 
     Route::post('/logout', [AutentikasiController::class, 'logout'])->name('logout');
+
+    Route::fallback(function () {
+        return view('errors.404', [
+            'active' => 'err'
+        ]);
+    });
 });
 
+Route::get('/', [AutentikasiController::class, 'showLogin'])->name('showLogin')->middleware('guest');
 
 Route::get('/login', [AutentikasiController::class, 'showLogin'])->name('showLogin')->middleware('guest');
 
@@ -53,12 +60,4 @@ Route::get('/register', [AutentikasiController::class, 'showRegister'])->name('s
 Route::post('/register', [AutentikasiController::class, 'register'])->name('register');
 
 
-Route::fallback(function () {
-    return view('errors.404', [
-        'active' => 'err'
-    ]);
-});
-
-Route::any('{url}', function () {
-    return  view('errors.nomatch');
-})->where('url', '.*');
+Route::any('/{url}', [RoutingController::class, 'no_match'])->where('url', '.*')->middleware('guest');
