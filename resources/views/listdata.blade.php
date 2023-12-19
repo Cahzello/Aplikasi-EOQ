@@ -22,9 +22,12 @@
 
 
     @if (empty($responses->count()))
-        <div class="d-flex flex-column align-items-center justify-content-center">
-            <h1 class="h2 text-dark">Belum Ada Data.</h1>
-            <a href="/input-data">Klik disini untuk membuat data</a>
+        <div class="card mx-4 p-3 card-shadow">
+
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <h1 class="h2 text-dark">Belum Ada Data.</h1>
+                <a href="/input-data">Klik disini untuk membuat data</a>
+            </div>
         </div>
     @else
         <div class="py-2 bg-body-tertiary">
@@ -32,7 +35,7 @@
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
 
                     @foreach ($responses as $response)
-                        <div class="col">
+                        <div class="col my-2">
                             <div class="card shadow-sm">
                                 <div class="card-body">
                                     <h3 class="card-title">Bahan Baku {{ $response['bahan_baku'] }}</h3>

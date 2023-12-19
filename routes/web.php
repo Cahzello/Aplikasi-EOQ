@@ -3,6 +3,7 @@
 use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/home', [RoutingController::class, 'homePage'])->name('homepage');
 
     Route::get('/user-profile', [RoutingController::class, 'userProfile']);
+
+    Route::post('/user-profile/update-username', [UserController::class, 'updateUsername'])->name('update_username');
+
+    Route::post('/user-profile/update-password', [UserController::class, 'updatePassword'])->name('update_password');
+
+    Route::delete('/user-profile/delete', [UserController::class, 'delete_acc'])->name('delete_acc');
 
     Route::get('/input-data', [RoutingController::class, 'inputData']);
 

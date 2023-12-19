@@ -6,7 +6,7 @@
         <div class="card-shadow-mb4">
             <div class="card-header">
                 <h1 class="h2 mb-4 text-gray-800">Input Data</h1>
-                <p>Qui culpa adipisicing minim ut minim deserunt aliquip cupidatat.</p>
+                <p>Halaman untuk meninput data bahan, sebelum di proses perhitungan EOQ.</p>
                 <div class="alert alert-info">
                     <p>Catatan:</p>
                     <p>

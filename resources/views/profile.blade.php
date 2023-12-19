@@ -100,38 +100,80 @@
             <a class="btn btn-primary " href="/home"><i class="fas fa-fw fa-arrow-left"></i> Back</a>
             <h3 class="mb-0 mx-4">User Profile</h3>
         </div>
+        @if ($errors->any())
+            <div class="mx-4 my-1">
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        @endif
+        @if (session()->has('success'))
+            <div class="mx-4 my-4">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                </div>
+
+            </div>
+        @endif
         <div class="card-body">
-            <form method="post" action="update_profile.php" enctype="multipart/form-data">
+            <form method="post" action="{{ route('update_username') }}" enctype="multipart/form-data">
+                @method('post')
+                @csrf
                 <label for="usernmae" class="form-label">Change Username: </label>
                 <div class="input-group mb-3">
-                    <input type="username" value="{{ $response['username'] }}" class="form-control" placeholder="Enter your new username" id="username" name="username">
+                    <input type="username" value="{{ $response['username'] }}" class="form-control"
+                        placeholder="Enter your new username" id="username" name="username">
                 </div>
                 <input value="Update Username" type="submit" class="btn btn-success">
             </form>
 
-            <form method="post" action="update_profile.php" enctype="multipart/form-data" class="mt-3">
+            <form method="post" action="{{route('update_password')}}" enctype="multipart/form-data" class="my-3">
+                @method('post')
+                @csrf
                 <label for="password" class="form-label">Change Password: </label>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" placeholder="Enter your new password" id="password" name="password">
-                    <button class="btn btn-outline-secondary" type="button" id="button-password"><i class="far fa-eye"></i></button>
+                    <input type="password" class="form-control" placeholder="Enter your new password" id="password"
+                        name="password">
+                    <input type="password" class="form-control" placeholder="Enter again your new password" id="repeat_pw"
+                        name="repeat_pw">
+                    <button class="btn btn-outline-secondary" type="button" id="button-password"><i
+                            class="far fa-eye"></i></button>
                 </div>
-                <input value="Update Password" type="submit" class="btn btn-success">
+                <input value="Update Password" type="submit" class="btn btn-success" >
             </form>
 
+            <form action="{{route('delete_acc')}}" method="post">
+                @method('delete')
+                @csrf
+                <label for="delete" class="form-label">Delete Account: </label>
+                <div class="input-group">
+                    <input type="submit" value="Delete Account" class="btn btn-danger" onclick="return confirm('Apakah anda mau menghapus akun ini?')">
+                </div>
+                <div class="alert alert-danger my-3">
+                    <p>This action take delete the account and all records data have been created.</p>
+                </div>
 
+            </form>
         </div>
     </div>
     <script>
-        document.getElementById("button-password").addEventListener("click", function () {
+        document.getElementById("button-password").addEventListener("click", function() {
             var passwordInput = document.getElementById("password");
+            var repeatPwInput = document.getElementById("repeat_pw");
             var buttonIcon = document.querySelector("#togglePassword i");
-    
+
             if (passwordInput.type === "password") {
                 passwordInput.type = "text";
+                repeatPwInput.type = "text";
                 buttonIcon.classList.remove("far", "fa-eye");
                 buttonIcon.classList.add("fas", "fa-eye-slash");
             } else {
                 passwordInput.type = "password";
+                repeatPwInput.type = "password";
                 buttonIcon.classList.remove("fas", "fa-eye-slash");
                 buttonIcon.classList.add("far", "fa-eye");
             }
