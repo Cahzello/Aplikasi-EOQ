@@ -18,6 +18,11 @@ class RoutingController extends Controller
             'active' => 'homepage'
         ]);
     }
+    public function userProfile() {
+        return view('profile', [
+            'active' => 'profile'
+        ]);
+    }
 
     public function inputData(){
         return view('inputdata', [

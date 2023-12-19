@@ -21,6 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/', [RoutingController::class, 'homePage']);
     
     Route::get('/home', [RoutingController::class, 'homePage'])->name('homepage');
+
+Route::get('/userProfile', [RoutingController::class, 'userProfile']);
     
     Route::get('/input-data', [RoutingController::class, 'inputData']);
     
