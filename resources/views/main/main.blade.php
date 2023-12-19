@@ -19,6 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
 @guest
@@ -122,6 +123,14 @@
         <!-- Page level custom scripts -->
         <script src="/js/demo/chart-area-demo.js"></script>
         <script src="/js/demo/chart-pie-demo.js"></script>
+
+        <script type="module">
+            $(document).ready(function () {
+                $('#button-print').on('click', function () {  
+                    $('#section-print').printThis();
+                });
+            });
+        </script>
 
     </body>
 @endauth

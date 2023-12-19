@@ -5,9 +5,9 @@
         <div class="card-body">
             <div class="d-flex justify-content-evenly">
                 <a class="btn btn-primary mb-4" href="/data"><i class="fas fa-fw fa-arrow-left"></i> Back</a>
-                <h1 class="h2 text-dark mb-4 mx-3">Hasil Perhitungan Bahan Baku {{ $response['bahan_baku'] }}</h1>
             </div>
-            <div class="mb-3 table-responsive">
+            <div id="section-print" class="mb-3 table-responsive">
+                <h1 class="h2 text-dark mb-4 mx-3">Hasil Perhitungan Bahan Baku {{ $response['bahan_baku'] }}</h1>
                 <table class="table table-striped table-bordered text-dark">
                     <thead>
                         <tr class="text-center">
@@ -59,6 +59,7 @@
                     <input type="submit" value="Delete Data" class="btn btn-danger"
                         onclick="return confirm('Apakah anda mau menghapus data ini?')">
                 </form>
+                <button id="button-print" class="btn btn-success">Print Data</button>
             </div>
 
         </div>
