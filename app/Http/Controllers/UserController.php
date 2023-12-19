@@ -10,6 +10,21 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    public function show_data(User $data)
+    {   
+        return view('index', [
+            'active' => 'user',
+            'response' => $data
+        ]);
+    }
+
+    public function editRole(Request $request, User $data)
+    {
+        User::where('id', $data->id)->update(['role' => $request->role]);
+
+        return redirect('/user-list/' . $data->id)->with('success', 'Role telah berhasil diubah');
+    }
+
     public function updateUsername(Request $request)
     {   
         $validatedRequest = $request->validate([
@@ -71,4 +86,19 @@ class UserController extends Controller
         return redirect('/login')->with('success', 'Akun Berhasil Dihapus');
     }
 
+    public function delete_acc_admin_priv(User $data)
+    {
+        $user_id = $data->id;
+        $products = Product::where('user_id', $user_id)->get();
+
+        foreach ($products as $product) {
+            Calculate::where('product_id', $product->id)->delete();
+        }
+
+        Product::where('user_id', $user_id)->delete();    
+
+        User::where('id', $user_id)->delete();
+
+        return redirect('/user-list')->with('success', 'Akun Berhasil Dihapus');
+    }
 }

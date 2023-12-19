@@ -37,6 +37,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user-list', [RoutingController::class, 'userPage']);
 
+    Route::get('/user-list/{data}', [UserController::class, 'show_data'])->name('show_data');
+
+    Route::post('/user-list/{data}/edit-role', [UserController::class, 'editRole'])->name('edit_role');
+
+    Route::delete('/user-list/{data}/delete', [UserController::class, 'delete_acc_admin_priv'])->name('delete_acc_by_admin');
+
     Route::get('/data', [RoutingController::class, 'showData']);
 
     Route::get('/data/{data}', [RoutingController::class, 'listData'])->name('details');

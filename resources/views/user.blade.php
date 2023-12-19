@@ -5,8 +5,16 @@
         <div class="card-body">
             <div>
                 <h1 class="h2 text-dark mb-4">List of User</h1>
-                <p>Anim ea exercitation nisi ut labore in dolor deserunt aliquip ullamco.</p>   
+                <p>Halaman List of User, melihar seluruh user dalam aplikasi ini.</p>
                 <hr>
+                @if (session()->has('success'))
+                    <div class="mx-4 my-4">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                        </div>
+
+                    </div>
+                @endif  
             </div>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered text-dark">
@@ -15,6 +23,7 @@
                         <th class="align-middle">Username</th>
                         <th class="align-middle">Email</th>
                         <th class="align-middle">Role</th>
+                        <th class="align-middle">Action</th>
                     </thead>
                     <tbody>
                         @if (empty($responses->count()))
@@ -28,6 +37,10 @@
                                     <td class="align-middle">{{ $response['username'] }}</td>
                                     <td class="align-middle">{{ $response['email'] }}</td>
                                     <td class="align-middle">{{ $response['role'] }}</td>
+                                    <td class="align-middle">
+                                        <a href="{{ route('show_data', ['data' => $response]) }}"
+                                            class="btn btn-primary">Details</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         @endif
