@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AutentikasiController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\UserController;
@@ -19,9 +20,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth')->group(function () {
 
+    // homepage
+
     Route::get('/', [RoutingController::class, 'homePage']);
 
     Route::get('/home', [RoutingController::class, 'homePage'])->name('homepage');
+
+    // user profile
 
     Route::get('/user-profile', [RoutingController::class, 'userProfile']);
 
@@ -31,9 +36,28 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/user-profile/delete', [UserController::class, 'delete_acc'])->name('delete_acc');
 
+    // input data 
+
     Route::get('/input-data', [RoutingController::class, 'inputData']);
 
-    Route::post('/input-data', [ProductController::class, 'store'])->name('store');
+    Route::get('/input-data-1', [ItemController::class, 'show']);
+
+    Route::get('/input-data-2', [ItemController::class, 'listdata']);
+
+    Route::get('/input-data-3', [ItemController::class, 'inputmonth']);
+
+    Route::post('/input-data-1', [ItemController::class, 'store'])->name('percobaan');
+    
+    Route::post('/input-data', [ItemController::class, 'store'])->name('store');
+
+    // rekapan data
+
+    Route::get('/rekapan-bulanan', [RoutingController::class, 'rekapan']);
+
+    Route::get('/rekapan-bulanan/data/{data}', [RoutingController::class, 'details'])->name('detail_rekapan');
+
+
+    // list of user 
 
     Route::get('/user-list', [RoutingController::class, 'userPage']);
 
@@ -42,6 +66,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/user-list/{data}/edit-role', [UserController::class, 'editRole'])->name('edit_role');
 
     Route::delete('/user-list/{data}/delete', [UserController::class, 'delete_acc_admin_priv'])->name('delete_acc_by_admin');
+
+    // showing the data
 
     Route::get('/data', [RoutingController::class, 'showData']);
 
@@ -53,13 +79,17 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/data/{data}/delete', [ProductController::class, 'delete'])->name('delete');
 
+    // logout 
+
     Route::post('/logout', [AutentikasiController::class, 'logout'])->name('logout');
 
-    Route::fallback(function () {
-        return view('errors.404', [
-            'active' => 'err'
-        ]);
-    });
+    
+});
+
+Route::fallback(function () {
+    return view('errors.404', [
+        'active' => 'err'
+    ]);
 });
 
 Route::get('/', [AutentikasiController::class, 'showLogin'])->name('showLogin')->middleware('guest');
@@ -72,5 +102,3 @@ Route::get('/register', [AutentikasiController::class, 'showRegister'])->name('s
 
 Route::post('/register', [AutentikasiController::class, 'register'])->name('register');
 
-
-Route::any('/{url}', [RoutingController::class, 'no_match'])->where('url', '.*')->middleware('guest');

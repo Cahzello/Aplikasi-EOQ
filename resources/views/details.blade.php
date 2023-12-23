@@ -64,4 +64,12 @@
 
         </div>
     </div>
+
+    <script type="module">
+        $(document).ready(function() {
+            $('#button-print').on('click', function() {
+                $('#section-print').printThis();
+            });
+        });
+    </script>
 @endsection

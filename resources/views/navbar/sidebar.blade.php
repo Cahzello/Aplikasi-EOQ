@@ -25,6 +25,12 @@
                 <span>Input Bahan Baku</span></a>
         </li>
 
+        <li class="nav-item my-0 {{ $active === 'rekap' ? 'active' : '' }}">
+            <a class="nav-link" href="/rekapan-bulanan">
+                <i class="fas fa-fw fa-table" aria-hidden="true"></i>
+                <span>Data Rekapan Bulanan</span></a>
+        </li>
+
         <li class="nav-item my-0 {{ $active === 'listdata' ? 'active' : '' }}">
             <a class="nav-link" href="/data">
                 <i class="fas fa-fw fa-table" aria-hidden="true"></i>
