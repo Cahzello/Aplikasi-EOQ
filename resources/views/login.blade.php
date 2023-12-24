@@ -39,13 +39,13 @@
       <div class="row d-flex align-items-center justify-content-center h-100">
         <div class="col-md-8 col-lg-7 col-xl-6">
           <div class="card border-0">
-            <div class="card-body p-0">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
-                class="img-fluid" alt="Phone image">
+            <div class="card-body p-0 text-center">
+              <img src="LOGO/black/180x180.svg"
+                class="img-fluid mx-auto" alt="Phone image" style="max-width: 80%;">
             </div>
           </div>
         </div>
-        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+         <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
           <div class="card border-0">
             <div class="card-body p-4">
               <h1 class="h4 text-gray-900 mb-4">Hello, Welcome back!!</h1>
@@ -80,8 +80,7 @@
             </div>
           </div>
         </div>
-      </div>
+        </div>
     </div>
   </section>
-
 @endsection
