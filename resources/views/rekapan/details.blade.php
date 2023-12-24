@@ -7,9 +7,17 @@
             <div class="card-header">
                 <h1 class="h2 mb-4 text-gray-800">Data Rekapan Bahan Baku {{ $data_item->bahan_baku }} </h1>
                 <p>Data Rekapan Bahan Baku Yang Telah Dibuat</p>
-                <a href="{{ route('rekapan_view_store', ['data_item' => $data_item]) }}" class="btn btn-success">Isi Data</a>
-                <a href="#" class="btn btn-primary">Edit Nama Bahan Baku </a>
-                <a href="#" class="btn btn-danger">Hapus Bahan Baku</a>
+                <div class="d-flex flex-row">
+                    <a href="{{ route('rekapan_view_store', ['data_item' => $data_item]) }}" class="btn btn-success mx-2">Isi
+                        Data</a>
+                    <a href="{{ route('item_view_edit', ['item' => $data_item]) }}" class="btn btn-primary">Edit Nama Bahan
+                        Baku </a>
+                    <form action="{{route('item_delete', ['item' => $data_item])}}" method="POST">
+                        @method('delete')
+                        @csrf
+                        <input type="submit" class="btn btn-danger mx-2" value="Hapus Bahan Baku" onclick="return confirm('Apakah anda ingin menghapusnya?')">
+                    </form>
+                </div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -55,7 +63,7 @@
                             <tbody>
                                 @if (empty($responses->count()))
                                     <tr class="text-center">
-                                        <td colspan="7" class="align-middle">Data Belum Diisi</td>
+                                        <td colspan="8" class="align-middle">Data Belum Diisi</td>
 
                                     </tr>
                                 @else
@@ -74,7 +82,8 @@
                                             <td>{{ $response['leadtime'] === null ? 'Data Kosong' : $response['leadtime'] }}
                                             </td>
                                             <td>
-                                                <a href="{{route('rekapan_view_edit', ['record' => $response]) }}" class="btn btn-warning">
+                                                <a href="{{ route('rekapan_view_edit', ['record' => $response]) }}"
+                                                    class="btn btn-warning">
                                                     <i class="fas fa-pen-square"></i>
                                                 </a>
                                             </td>

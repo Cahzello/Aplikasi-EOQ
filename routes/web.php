@@ -49,7 +49,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/rekapan-bulanan/data/{data}', [RoutingController::class, 'details'])->name('detail_rekapan');
     
-    // CRUD rekapan data
+    // CRU rekapan data
 
     Route::get('/rekapan-bulanan/create/{data_item}', [RekapanController::class, 'view_store'])->name('rekapan_view_store');
 
@@ -59,7 +59,13 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/rekapan-bulanan/edit/{record}', [RekapanController::class, 'edit'])->name('rekapan_edit');
 
+    // Edit nama bahan baku, hapus bahan baku
+    
+    Route::get('/rekapan-bulanan/edit-bahanbaku/{item}', [ItemController::class, 'view_edit'])->name('item_view_edit');
 
+    Route::post('/rekapan-bulanan/edit-bahanbaku/{item}', [ItemController::class, 'edit'])->name('item_edit');
+
+    Route::delete('/rekapan-bulanan/delete/{item}', [ItemController::class, 'destroy'])->name('item_delete');
 
     // list of user 
 

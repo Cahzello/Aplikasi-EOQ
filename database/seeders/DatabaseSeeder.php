@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Item;
 use App\Models\User;
+use App\Models\Item_detail;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -23,6 +25,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin'
         
         ]);
+
         User::create([
             'username' => 'yukina minato',
             'email' => 'yukina@gmail.com',
@@ -30,5 +33,23 @@ class DatabaseSeeder extends Seeder
             'role' => 'user'
         ]);
 
+        Item::create([
+            'user_id' => 11,
+            'bahan_baku' => 'Coklat'
+        ]);
+
+        $bulan = ['januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember'];
+
+        foreach ($bulan as $value) {
+            Item_detail::create([
+                'item_id' => 1,
+                'bulan' => $value,
+                'jumlah_pembelian' => rand(1, 99),
+                'jumlah_penggunaan'=> rand(1, 99),
+                'biaya_pemesanan' => rand(1, 99),
+                'biaya_penyimpanan' => rand(1, 99),
+                'leadtime' => rand(1, 9),
+            ]);
+        }
     }
 }

@@ -26,7 +26,7 @@
                 @endif
             </div>
             <div class="card-body">
-                @if (empty($responses))
+                @if (empty($responses->count()))
                     <div class="card mx-4 p-3 card-shadow">
 
                         <div class="d-flex flex-column align-items-center justify-content-center">
