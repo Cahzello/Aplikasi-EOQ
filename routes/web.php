@@ -3,6 +3,7 @@
 use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RekapanController;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -39,14 +40,6 @@ Route::middleware('auth')->group(function () {
     // input data 
 
     Route::get('/input-data', [RoutingController::class, 'inputData']);
-
-    Route::get('/input-data-1', [ItemController::class, 'show']);
-
-    Route::get('/input-data-2', [ItemController::class, 'listdata']);
-
-    Route::get('/input-data-3', [ItemController::class, 'inputmonth']);
-
-    Route::post('/input-data-1', [ItemController::class, 'store'])->name('percobaan');
     
     Route::post('/input-data', [ItemController::class, 'store'])->name('store');
 
@@ -55,6 +48,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/rekapan-bulanan', [RoutingController::class, 'rekapan']);
 
     Route::get('/rekapan-bulanan/data/{data}', [RoutingController::class, 'details'])->name('detail_rekapan');
+    
+    // CRUD rekapan data
+
+    Route::get('/rekapan-bulanan/create/{data_item}', [RekapanController::class, 'view_store'])->name('rekapan_view_store');
+
+    Route::post('/rekapan-bulanan/create/{data_item}', [RekapanController::class, 'store'])->name('rekapan_store');
+
+    Route::get('/rekapan-bulanan/edit/{record}', [RekapanController::class, 'view_edit'])->name('rekapan_view_edit');
+
+    Route::post('/rekapan-bulanan/edit/{record}', [RekapanController::class, 'edit'])->name('rekapan_edit');
+
 
 
     // list of user 

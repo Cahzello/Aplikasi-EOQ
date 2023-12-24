@@ -5,9 +5,9 @@
 
         <div class="card-shadow-mb4">
             <div class="card-header">
-                <h1 class="h2 mb-4 text-gray-800">Data Rekapan Bahan Baku {{ $bahan_baku }} </h1>
+                <h1 class="h2 mb-4 text-gray-800">Data Rekapan Bahan Baku {{ $data_item->bahan_baku }} </h1>
                 <p>Data Rekapan Bahan Baku Yang Telah Dibuat</p>
-                <a href="#" class="btn btn-success">Tambah Data</a>
+                <a href="{{ route('rekapan_view_store', ['data_item' => $data_item]) }}" class="btn btn-success">Isi Data</a>
                 <a href="#" class="btn btn-primary">Edit Nama Bahan Baku </a>
                 <a href="#" class="btn btn-danger">Hapus Bahan Baku</a>
                 @if ($errors->any())
@@ -49,14 +49,18 @@
                                     <th>Biaya Pemesanan</th>
                                     <th>Biaya Penyimpanan</th>
                                     <th>Leadtime</th>
+                                    <th>Edit Data</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-center">
-                                    @if (empty($responses->count()))
+                                @if (empty($responses->count()))
+                                    <tr class="text-center">
                                         <td colspan="7" class="align-middle">Data Belum Diisi</td>
-                                    @else
-                                        @foreach ($responses as $key => $response)
+
+                                    </tr>
+                                @else
+                                    @foreach ($responses as $key => $response)
+                                        <tr class="text-center">
                                             <td>{{ $key + 1 }} </td>
                                             <td>{{ ucfirst($response['bulan']) }} </td>
                                             <td>{{ $response['jumlah_pembelian'] === null ? 'Data Kosong' : $response['jumlah_pembelian'] }}
@@ -69,9 +73,14 @@
                                             </td>
                                             <td>{{ $response['leadtime'] === null ? 'Data Kosong' : $response['leadtime'] }}
                                             </td>
-                                        @endforeach
-                                    @endif
-                                </tr>
+                                            <td>
+                                                <a href="{{route('rekapan_view_edit', ['record' => $response]) }}" class="btn btn-warning">
+                                                    <i class="fas fa-pen-square"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>

@@ -101,7 +101,7 @@ class RoutingController extends Controller
         return view('rekapan.details', [
             'active' => 'rekap',
             'responses' => $cobain,
-            'bahan_baku' => $data->bahan_baku
+            'data_item' => $data
         ]);
     }
 }

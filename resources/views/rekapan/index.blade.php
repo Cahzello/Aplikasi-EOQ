@@ -50,7 +50,7 @@
                                                 <div class="d-flex justify-content-between align-items-center">
                                                     <div class="btn-group">
                                                         <a href="{{ route('detail_rekapan', ['data' => $response]) }}"
-                                                            class="btn btn-primary">Input Data</a>
+                                                            class="btn btn-primary">Lihat Data</a>
                                                     </div>
                                                 </div>
                                             </div>

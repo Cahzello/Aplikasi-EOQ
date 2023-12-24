@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('item_id');
             $table->string('bulan');
-            $table->decimal('jumlah_pembelian')->nullable();
-            $table->decimal('jumlah_penggunaan')->nullable();
-            $table->decimal('biaya_pemesanan')->nullable();
-            $table->decimal('biaya_penyimpanan')->nullable();
+            $table->integer('jumlah_pembelian')->nullable();
+            $table->integer('jumlah_penggunaan')->nullable();
+            $table->integer('biaya_pemesanan')->nullable();
+            $table->integer('biaya_penyimpanan')->nullable();
             $table->integer('leadtime')->nullable();
             $table->timestamps();
         });
