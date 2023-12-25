@@ -101,9 +101,12 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                                <img src="LOGO/black/180x180.svg"
-                class="img-fluid mx-auto" alt="Phone image" style="max-width: 80%;">
+                                <div class="col-md-10 col-lg-6 col-xl-7 d-flex flex-column justify-content-center align-items-center order-1 order-lg-2">
+                                    <img src="LOGO/black/180x180.svg" class="img-fluid mx-auto" alt="Phone image"
+                                        style="max-width: 80%;">
+                                    <h1 id="title-company" class="text-dark">Shid<img src="LOGO/black/64X64.svg"
+                                            class="img-fluid mx-auto" alt="Phone image" style="max-width: 80%;">ia
+                                    </h1>
                                 </div>
                             </div>
                         </div>
@@ -111,4 +114,4 @@
                 </div>
             </div>
         </div>
-@endsection
+    @endsection

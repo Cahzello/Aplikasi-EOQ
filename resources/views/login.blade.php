@@ -39,6 +39,10 @@
             background-color: #c82333;
             /* Darker color on hover */
         }
+
+        #title-company {
+            font-size:
+        }
     </style>
 
 
@@ -48,12 +52,18 @@
                 <div class="col-md-8 col-lg-7 col-xl-6">
                     <div class="card border-0">
                         <div class="card-body p-4 text-center">
-                            <img src="LOGO/black/180x180.svg"
-                                class="img-fluid mx-auto" alt="Phone image" style="max-width: 80%;">
+                            <div class="mb-3">
+                                <img src="LOGO/black/128X128.svg" class="img-fluid mx-auto" alt="Phone image" style="max-width: 80%;">
+
+                            </div>
+
+                            <h1 id="title-company" class="text-dark">Shid<img src="LOGO/black/64X64.svg" class="img-fluid mx-auto" alt="Phone image"
+                                    style="max-width: 80%;">ia
+                            </h1>
                         </div>
                     </div>
                 </div>
-                 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
                     <div class="card border-0">
                         <div class="card-body p-4">
                             <h1 class="h4 text-gray-900 mb-4">Hello, Welcome back!!</h1>
@@ -80,8 +90,8 @@
                                 <!-- Email input -->
                                 <div class="form-group">
                                     <label class="form-label" for="form1Example13">Username</label>
-                                    <input name="username" type="text" id="form1Example13"
-                                        value="{{old('username')}}" class="form-control form-control-lg" />
+                                    <input name="username" type="text" id="form1Example13" value="{{ old('username') }}"
+                                        class="form-control form-control-lg" />
                                 </div>
 
                                 <!-- Password input -->
