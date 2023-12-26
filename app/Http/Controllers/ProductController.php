@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Http\Controllers;
 
 use App\Models\Calculate;
@@ -124,3 +124,4 @@ class ProductController extends Controller
         return redirect('/data')->with('success', 'Data telah berhasil dihapus');
     }
 }
+*/

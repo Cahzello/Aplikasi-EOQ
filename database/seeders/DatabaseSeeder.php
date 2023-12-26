@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
                 'bulan' => $bulan,
                 'jumlah_pembelian' => $beli,
                 'jumlah_penggunaan' => $penggunaan,
-                'biaya_pemesanan' => rand(1, 99),
+                'biaya_pemesanan' => 47916,
                 'biaya_penyimpanan' => rand(1, 99),
                 'leadtime' => rand(1, 9),
             ]);

@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('item_details', function (Blueprint $table) {
+        Schema::create('items_summaries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('item_id')->constrained();
-            $table->string('bulan');
-            $table->integer('jumlah_pembelian')->nullable();
-            $table->integer('jumlah_penggunaan')->nullable();
-            $table->integer('biaya_pemesanan')->nullable();
-            $table->integer('biaya_penyimpanan')->nullable();
-            $table->integer('leadtime')->nullable();
+            $table->integer('total_penggunaan_tahunan');
+            $table->integer('max_penggunaan_tahunan');
+            $table->integer('average_penggunaan_tahunan');
+            $table->integer('biaya_pemesanan');
+            $table->integer('biaya_penyimpanan');
+            $table->integer('leadtime');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('items_details');
+        Schema::dropIfExists('items_summary');
     }
 };

@@ -42,7 +42,7 @@ class AutentikasiController extends Controller
         $validatedRequest = $request->validate([
             'username' => 'required|min:3|max:255|unique:users',
             'password' => 'required|min:3|max:255',
-            'email' => 'required|email:dns|unique:users'
+            'email' => 'required|email|unique:users'
         ],[
             'username.required' => 'Masukan username anda!',
             'password.required' => 'Masukan password anda!',

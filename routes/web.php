@@ -85,9 +85,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/data/{data}/edit', [RoutingController::class, 'editPage'])->name('edit');
 
-    Route::put('/data/{data}/edit', [ProductController::class, 'update'])->name('update');
+    // Route::put('/data/{data}/edit', [ProductController::class, 'update'])->name('update');
 
-    Route::delete('/data/{data}/delete', [ProductController::class, 'delete'])->name('delete');
+    // Route::delete('/data/{data}/delete', [ProductController::class, 'delete'])->name('delete');
 
     // logout 
 

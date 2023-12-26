@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('calculates', function (Blueprint $table) {
+        Schema::create('items_results', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('product_id');
-            $table->string('bahan_baku');
+            $table->foreignId('item_id')->constrained();
+            $table->foreignId('item_summaries_id')->constrained('items_summaries');
             $table->integer('eoq');
-            $table->decimal('rop', 10, 1);
-            $table->decimal('safety_stock', 10, 1);
+            $table->decimal('rop');
+            $table->decimal('safety_stock');
             $table->integer('frekuensi');
-            $table->integer('frekuensi_konvensional');
             $table->integer('average_pembelian');
+            $table->integer('frekuensi_konvensional');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('calculates');
+        Schema::dropIfExists('items_results');
     }
 };
