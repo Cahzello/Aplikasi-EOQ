@@ -22,6 +22,8 @@ Sebelum memulai, pastikan Anda telah menginstal perangkat lunak berikut pada mes
 
 - Versi PHP minimal `8.1.6`
 - Versi composer minimal `2.5.1`
+- Git minimal `2.40`
+- NodeJS minimal `18.16`
 - MySQL Database
 
 ## Pemasangan
