@@ -55,8 +55,8 @@ class ItemController extends Controller
     {
         $item_id = $item->id;
 
-        Item::where('id', $item_id)->delete();
         Item_detail::where('item_id', $item_id)->delete();
+        Item::where('id', $item_id)->delete();
 
         return redirect('/rekapan-bulanan')->with('success', 'Data bahan baku berhasil dihapus.');
     }
