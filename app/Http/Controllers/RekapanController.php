@@ -31,12 +31,12 @@ class RekapanController extends Controller
     public function store(Request $request, Item_detail $data_item)
     {
         $validatedRequest = $request->validate([
-            'bulan' => 'required|max:255',
-            'jumlah_pembelian' => 'required|max:255|numeric',
-            'jumlah_penggunaan' => 'required|max:255|numeric',
-            'biaya_pemesanan' => 'required|max:255|numeric',
-            'biaya_penyimpanan' => 'required|max:255|numeric',
-            'leadtime' => 'required|max:255|numeric',
+            'bulan' => 'required|string',
+            'jumlah_pembelian' => 'required|numeric',
+            'jumlah_penggunaan' => 'required|numeric',
+            'biaya_pemesanan' => 'required|numeric',
+            'biaya_penyimpanan' => 'required|numeric',
+            'leadtime' => 'required|numeric',
         ]);
 
         $item_id = $data_item->item_id;
@@ -62,11 +62,11 @@ class RekapanController extends Controller
     public function edit(Request $request, Item_detail $record)
     {
         $validatedRequest = $request->validate([
-            'jumlah_pembelian' => 'required|max:255|numeric',
-            'jumlah_penggunaan' => 'required|max:255|numeric',
-            'biaya_pemesanan' => 'required|max:255|numeric',
-            'biaya_penyimpanan' => 'required|max:255|numeric',
-            'leadtime' => 'required|max:255|numeric',
+            'jumlah_pembelian' => 'required|numeric',
+            'jumlah_penggunaan' => 'required|numeric',
+            'biaya_pemesanan' => 'required|numeric',
+            'biaya_penyimpanan' => 'required|numeric',
+            'leadtime' => 'required|numeric',
         ]);
         $bulan = $record->bulan;
 

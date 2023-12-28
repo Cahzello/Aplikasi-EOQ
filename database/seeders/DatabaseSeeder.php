@@ -35,13 +35,13 @@ class DatabaseSeeder extends Seeder
 
         Item::create([
             'user_id' => 11,
-            'bahan_baku' => 'Teping Tapioka'
+            'bahan_baku' => 'Tepung Tapioka'
         ]);
 
         $data = [
             'bulan' => ['januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember'],
             'beli' => [1800, 1900, 1800, 1950, 1950, 1850, 1900, 1850, 1800, 1700, 1750, 1800],
-            'penggunaan' => [1950, 1750, 1650, 1790, 1950, 1900, 1925, 1725, 1830, 1650, 1530, 1900]
+            'penggunaan' => [1950, 1750, 1650, 1790, 1950, 1900, 1925, 1725, 1830, 1650, 1530, 1900],
         ];
 
         foreach ($data['bulan'] as $i => $bulan) {
@@ -53,9 +53,9 @@ class DatabaseSeeder extends Seeder
                 'bulan' => $bulan,
                 'jumlah_pembelian' => $beli,
                 'jumlah_penggunaan' => $penggunaan,
-                'biaya_pemesanan' => 47916,
-                'biaya_penyimpanan' => rand(1, 99),
-                'leadtime' => rand(1, 9),
+                'biaya_pemesanan' => 47916.666,
+                'biaya_penyimpanan' => 154.166,
+                'leadtime' => 0.25,
             ]);
         }
     }

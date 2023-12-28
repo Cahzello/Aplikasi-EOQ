@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('bulan');
             $table->integer('jumlah_pembelian')->nullable();
             $table->integer('jumlah_penggunaan')->nullable();
-            $table->integer('biaya_pemesanan')->nullable();
-            $table->integer('biaya_penyimpanan')->nullable();
-            $table->integer('leadtime')->nullable();
+            $table->decimal('biaya_pemesanan')->nullable();
+            $table->decimal('biaya_penyimpanan')->nullable();
+            $table->decimal('leadtime')->nullable();
             $table->timestamps();
         });
     }

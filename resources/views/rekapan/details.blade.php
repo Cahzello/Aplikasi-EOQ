@@ -12,7 +12,7 @@
                         Data</a>
                     <a href="{{ route('item_view_edit', ['item' => $data_item]) }}" class="btn btn-primary">Edit Nama Bahan
                         Baku </a>
-                    <a href="#" class="btn btn-primary mx-2">Hitung EOQ</a>
+                    <a href="{{route('perhitungan.store', ['data' => $data_item]) }}" class="btn btn-primary mx-2">Hitung EOQ</a>
                     <form action="{{route('item_delete', ['item' => $data_item])}}" method="POST">
                         @method('delete')
                         @csrf

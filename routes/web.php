@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\PerhitunganController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RekapanController;
 use App\Http\Controllers\RoutingController;
@@ -58,6 +59,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/rekapan-bulanan/edit/{record}', [RekapanController::class, 'view_edit'])->name('rekapan_view_edit');
 
     Route::post('/rekapan-bulanan/edit/{record}', [RekapanController::class, 'edit'])->name('rekapan_edit');
+
+    //CRUD data hasil perhitungan
+
+    Route::get('/rekapan-bulanan/eoq/{data}', [PerhitunganController::class, 'store'])->name('perhitungan.store');
+
+
 
     // Edit nama bahan baku, hapus bahan baku
     

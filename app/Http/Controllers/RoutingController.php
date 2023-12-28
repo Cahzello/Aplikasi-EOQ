@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Product;
 use App\Models\Calculate;
 use App\Models\Item_detail;
+use App\Models\Items_results;
 use Illuminate\Http\Request;
 
 class RoutingController extends Controller
@@ -52,7 +53,7 @@ class RoutingController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $items = $user->items;        
-        return view('listdata', [
+        return view('perhitungan.listdata', [
             'active' => 'listdata',
             'responses' => $items,
         ]);
@@ -60,9 +61,12 @@ class RoutingController extends Controller
 
     public function listData(Item $data)
     {
+        $items = Items_results::where('item_id', $data->id)->latest()->first();
+        // dd($items);
         return view('details', [
             'active' => 'listdata',
-            'response' => $data
+            'response' => $items,
+            'bahan_baku' => $data['bahan_baku'],
         ]);
     }
 

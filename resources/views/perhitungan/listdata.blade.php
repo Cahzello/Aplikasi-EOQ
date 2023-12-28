@@ -39,20 +39,10 @@
                             <div class="card shadow-sm">
                                 <div class="card-body">
                                     <h3 class="card-title">Bahan Baku {{ $response['bahan_baku'] }}</h3>
-                                    <p class="card-text">Dibuat Tanggal: {{ $response['created_at']->format('d F Y') }}</p>
-                                    <p class="card-text">Terakhir Update Tanggal:
-                                        {{ $response['updated_at']->format('d F Y') }}
-                                    </p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
                                             <a href="{{ route('details', ['data' => $response]) }}"
                                                 class="btn btn-primary">View</a>
-                                        </div>
-                                        <div>
-                                            <small class="text-body-secondary">Created: </small>
-                                            <small class="text-body-secondary">
-                                                {{ $response['created_at']->diffForHumans() }}
-                                            </small>
                                         </div>
                                     </div>
                                 </div>
