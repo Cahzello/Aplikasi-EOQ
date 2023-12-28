@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
         Item::create([
             'user_id' => 11,
-            'bahan_baku' => 'Coklat'
+            'bahan_baku' => 'Teping Tapioka'
         ]);
 
         $data = [

@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Item extends Model
+class Items_results extends Model
 {
     use HasFactory;
-
     protected $guarded = ['id'];
 
-    public function items_details()
+    public function items_summary()
     {
-        return $this->hasMany(Item_detail::class);
+        return $this->belongsTo(Items_summary::class);
     }
 
-    public function items_results()
+    public function items()
     {
-        return $this->hasMany(items_results::class);
+        return $this->belongsTo(Item::class);
     }
 }

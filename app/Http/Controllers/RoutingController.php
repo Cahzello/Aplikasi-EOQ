@@ -51,16 +51,14 @@ class RoutingController extends Controller
     public function showData()
     {
         $user = User::find(auth()->user()->id);
-        $products = $user->products;
-        $calculates = $products->flatMap->calculates;
-
+        $items = $user->items;        
         return view('listdata', [
             'active' => 'listdata',
-            'responses' => $calculates,
+            'responses' => $items,
         ]);
     }
 
-    public function listData(Calculate $data)
+    public function listData(Item $data)
     {
         return view('details', [
             'active' => 'listdata',
@@ -68,7 +66,7 @@ class RoutingController extends Controller
         ]);
     }
 
-    public function editPage(Product $data)
+    public function editPage(Item $data)
     {
         return view('editpage', [
             'active' => 'editpage',
