@@ -6,17 +6,34 @@
             <div class="d-flex justify-content-evenly">
                 <a class="btn btn-primary mb-4" href="/data"><i class="fas fa-fw fa-arrow-left"></i> Back</a>
             </div>
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if (session()->has('success'))
+                <div class="mx-4 my-4">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('success') }}
+                    </div>
+
+                </div>
+            @endif
             @if ($response == null)
                 <div class="card mx-4 p-3 card-shadow">
 
                     <div class="d-flex flex-column align-items-center justify-content-center">
                         <h1 class="h2 text-dark">Belum Ada Data.</h1>
-                        <a href="/rekapan-bulanan">Klik disini untuk menghitung EOQ</a>
+                        <a href="/rekapan-bulanan/data/{{ $item['id'] }}">Klik disini untuk menghitung EOQ</a>
                     </div>
                 </div>
             @else
                 <div id="section-print" class="mb-3 table-responsive">
-                    <h1 class="h2 text-dark mb-4 mx-3">Hasil Perhitungan Bahan Baku {{ $bahan_baku }}</h1>
+                    <h1 class="h2 text-dark mb-4 mx-3">Hasil Perhitungan Bahan Baku {{ $item['bahan_baku'] }}</h1>
                     <table class="table table-striped table-bordered text-dark">
                         <thead>
                             <tr class="text-center">
@@ -61,8 +78,9 @@
                     </table>
                 </div>
                 <div class="d-flex">
-                    <a href="/rekapan-bulanan/data/{{$response['item_id'] }}" class="btn btn-primary">Edit Data</a>
-                    <form action="" method="POST" class="px-2">
+                    <a href="/rekapan-bulanan/data/{{ $response['item_id'] }}" class="btn btn-primary">Edit Data</a>
+                    <form action="{{ route('perhitungan.delete', ['item' => $response->item_id]) }}" method="POST"
+                        class="px-2">
                         @method('delete')
                         @csrf
                         <input type="submit" value="Delete Data" class="btn btn-danger"

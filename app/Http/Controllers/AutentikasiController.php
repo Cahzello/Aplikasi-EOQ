@@ -8,17 +8,17 @@ use Illuminate\Support\Facades\Auth;
 
 class AutentikasiController extends Controller
 {
-    public function showLogin()
+    public function login()
     {
-        return view('login');
+        return view('auth.login');
     }
 
     public function showRegister()
     {
-        return view('register');
+        return view('auth.register');
     }
 
-    public function login(Request $request)
+    public function login_validate(Request $request)
     {
         $validatedRequest = $request->validate([
             'username' => 'required',

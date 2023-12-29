@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
+use App\Models\Items_results;
+use App\Models\Item_detail;
+use App\Models\Items_summary;
 use App\Models\User;
-use App\Models\Product;
-use App\Models\Calculate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     public function show_data(User $data)
-    {   
-        return view('index', [
+    {
+        return view('user-profile.index', [
             'active' => 'user',
             'response' => $data
         ]);
@@ -26,10 +28,10 @@ class UserController extends Controller
     }
 
     public function updateUsername(Request $request)
-    {   
+    {
         $validatedRequest = $request->validate([
             'username' => 'unique:users|max:255|min:3'
-        ],[
+        ], [
             'username.min' => 'Huruf dalam username harus melebihi atau sama dengan 3 huruf!',
 
         ]);
@@ -39,18 +41,17 @@ class UserController extends Controller
         User::where('id', $user_id)->update($validatedRequest);
 
         return redirect('/user-profile')->with('success', 'Username telah berhasil diubah');
-
     }
 
     public function updatePassword(Request $request)
     {
         $validatedRequest = $request->validate([
             'password' => 'min:3|max:255'
-        ],[
+        ], [
             'password.min' => 'Huruf dalam password harus melebihi atau sama dengan 3 huruf!',
         ]);
-        
-        if ($request->password !== $request->repeat_pw){
+
+        if ($request->password !== $request->repeat_pw) {
             return redirect('/user-profile')->withErrors('The password should match');
         }
 
@@ -64,23 +65,25 @@ class UserController extends Controller
     }
 
     public function delete_acc(Request $request)
-    {   
+    {
         $user_id = auth()->user()->id;
 
-        $products = Product::where('user_id', $user_id)->get();
+        $item_id = Item::where('user_id', $user_id)->get('user_id');
+        $count = Item::where('user_id', $user_id)->exists();
 
-        foreach ($products as $product) {
-            Calculate::where('product_id', $product->id)->delete();
+        if ($count) {
+            Items_results::where('item_id', $item_id)->delete();
+            Items_summary::where('item_id', $item_id)->delete();
+            Item_detail::where('item_id', $item_id)->delete();
+            Item::where('id', $item_id)->delete();
         }
 
-        Product::where('user_id', $user_id)->delete();    
-
         User::where('id', $user_id)->delete();
-        
+
         Auth::logout();
- 
+
         $request->session()->invalidate();
-     
+
         $request->session()->regenerateToken();
 
         return redirect('/login')->with('success', 'Akun Berhasil Dihapus');
@@ -89,13 +92,16 @@ class UserController extends Controller
     public function delete_acc_admin_priv(User $data)
     {
         $user_id = $data->id;
-        $products = Product::where('user_id', $user_id)->get();
+        
+        $item_id = Item::where('user_id', $user_id)->get('user_id');
+        $count = Item::where('user_id', $user_id)->exists();
 
-        foreach ($products as $product) {
-            Calculate::where('product_id', $product->id)->delete();
+        if ($count) {
+            Items_results::where('item_id', $item_id)->delete();
+            Items_summary::where('item_id', $item_id)->delete();
+            Item_detail::where('item_id', $item_id)->delete();
+            Item::where('id', $item_id)->delete();
         }
-
-        Product::where('user_id', $user_id)->delete();    
 
         User::where('id', $user_id)->delete();
 

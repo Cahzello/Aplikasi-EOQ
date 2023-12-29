@@ -19,6 +19,19 @@ class PerhitunganController extends Controller
     {
         $item_id = $data->id;
 
+        $data_terisi = Item_detail::where('item_id', $data->id)
+            ->whereNotNull('jumlah_pembelian')
+            ->whereNotNull('jumlah_penggunaan')
+            ->whereNotNull('biaya_pemesanan')
+            ->whereNotNull('biaya_penyimpanan')
+            ->whereNotNull('leadtime')
+            ->count();
+
+        if($data_terisi < 12){
+            return redirect('/rekapan-bulanan/data/' . $item_id)
+            ->withErrors('Isi dulu datanya terlebih dahulu hingga semua bulan terpenuhi');
+        }
+
         $total = Item_detail::where('item_id', 1)->sum('jumlah_penggunaan');
         $max  = Item_detail::where('item_id', 1)->max('jumlah_penggunaan');
         $avg  = Item_detail::where('item_id', 1)->avg('jumlah_penggunaan');
@@ -60,12 +73,12 @@ class PerhitunganController extends Controller
             $message = 'data berhasil diupdate.';
         } else {
             Items_results::create($item_result);
-            $message = 'data berhasil diupdate.';
+            $message = 'data berhasil dibuat.';
 
         }
 
 
-        return redirect('/data')->with('success', $message);
+        return redirect('/data/' . $item_id)->with('success', $message);
     }
 
 
@@ -115,10 +128,9 @@ class PerhitunganController extends Controller
     }
 
 
-    public function delete(Item $data)
-    {
-        // Product::where('id', $data->id)->delete();
-        // Calculate::where('product_id', $data->id)->delete();
+    public function delete(Item $item)
+    {      
+        Items_results::where('item_id', $item->id)->delete();
 
         return redirect('/data')->with('success', 'Data telah berhasil dihapus');
     }

@@ -2,21 +2,31 @@
 
 @section('container')
     <div class="card mx-4 my-4 p-4 card-shadow">
-
+        <div class="d-flex justify-content-evenly">
+            <a class="btn btn-primary mb-4" href="/rekapan-bulanan"><i class="fas fa-fw fa-arrow-left"></i> Back</a>
+            <h1 class="h2 mb-4 text-gray-800 mx-2">Data Rekapan Bahan Baku {{ $data_item->bahan_baku }} </h1>
+        </div>
         <div class="card-shadow-mb4">
             <div class="card-header">
-                <h1 class="h2 mb-4 text-gray-800">Data Rekapan Bahan Baku {{ $data_item->bahan_baku }} </h1>
                 <p>Data Rekapan Bahan Baku Yang Telah Dibuat</p>
-                <div class="d-flex flex-row">
-                    <a href="{{ route('rekapan_view_store', ['data_item' => $data_item]) }}" class="btn btn-success mx-2">Isi
+                <p>Untuk menghitung EOQ diperlukan semua data telah terisi.</p>
+                <div class="d-flex flex-row m-2">
+                    <a href="{{ route('rekapan_view_store', ['data_item' => $data_item]) }}" id="isiData"
+                        class="btn btn-success mx-1">Isi
                         Data</a>
-                    <a href="{{ route('item_view_edit', ['item' => $data_item]) }}" class="btn btn-primary">Edit Nama Bahan
+                    <a class="btn btn-primary mx-1" id="hitung_eoq"
+                        href="{{ route('perhitungan.store', ['data' => $data_item]) }}">
+                        Hitung EOQ
+                    </a>
+                    <a href="{{ route('item_view_edit', ['item' => $data_item]) }}" class="mx-1 btn btn-primary">Edit Nama
+                        Bahan
                         Baku </a>
-                    <a href="{{route('perhitungan.store', ['data' => $data_item]) }}" class="btn btn-primary mx-2">Hitung EOQ</a>
-                    <form action="{{route('item_delete', ['item' => $data_item])}}" method="POST">
+
+                    <form action="{{ route('item_delete', ['item' => $data_item]) }}" method="POST" class="mx-1">
                         @method('delete')
                         @csrf
-                        <input type="submit" class="btn btn-danger mx-1" value="Hapus Bahan Baku" onclick="return confirm('Apakah anda ingin menghapusnya?')">
+                        <input type="submit" class="btn btn-danger" value="Hapus Bahan Baku"
+                            onclick="return confirm('Apakah anda ingin menghapusnya?')">
                     </form>
                 </div>
                 @if ($errors->any())
@@ -101,4 +111,21 @@
 
 
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const count = {{ $data_terisi }}; // Replace with your boolean value
+            const eoqButton = document.getElementById('hitung_eoq');
+            const isiData = document.getElementById('isiData');
+            console.log(count);
+            if (count < 12) {
+                // Add the class
+                eoqButton.classList.add('disabled');
+            } else {
+                // Remove the class
+                eoqButton.classList.remove('disabled');
+                isiData.classList.add('disabled');
+            }
+        });
+    </script>
 @endsection

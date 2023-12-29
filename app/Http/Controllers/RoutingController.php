@@ -27,7 +27,7 @@ class RoutingController extends Controller
     {
         $user = User::find(auth()->user()->id);
 
-        return view('profile', [
+        return view('user-profile.profile', [
             'active' => 'profile',
             'response' => $user
         ]);
@@ -43,7 +43,7 @@ class RoutingController extends Controller
     public function userPage()
     {
         $this->authorize('admin');
-        return view('user', [
+        return view('user-list.user', [
             'active' => 'user',
             'responses' => User::all()
         ]);
@@ -52,7 +52,7 @@ class RoutingController extends Controller
     public function showData()
     {
         $user = User::find(auth()->user()->id);
-        $items = $user->items;        
+        $items = $user->items;
         return view('perhitungan.listdata', [
             'active' => 'listdata',
             'responses' => $items,
@@ -63,18 +63,10 @@ class RoutingController extends Controller
     {
         $items = Items_results::where('item_id', $data->id)->latest()->first();
         // dd($items);
-        return view('details', [
+        return view('perhitungan.details', [
             'active' => 'listdata',
             'response' => $items,
-            'bahan_baku' => $data['bahan_baku'],
-        ]);
-    }
-
-    public function editPage(Item $data)
-    {
-        return view('editpage', [
-            'active' => 'editpage',
-            'response' => $data
+            'item' => $data,
         ]);
     }
 
@@ -90,20 +82,28 @@ class RoutingController extends Controller
 
     public function details(Item $data)
     {
-        $cobain =Item_detail::where('item_id', $data->id)
+        $cobain = Item_detail::where('item_id', $data->id)
             ->whereNotNull('jumlah_pembelian')
             ->whereNotNull('jumlah_penggunaan')
             ->whereNotNull('biaya_pemesanan')
             ->whereNotNull('biaya_penyimpanan')
             ->whereNotNull('leadtime')
             ->get();
-        // dd($cobain);
+
+        $data_terisi = Item_detail::where('item_id', $data->id)
+            ->whereNotNull('jumlah_pembelian')
+            ->whereNotNull('jumlah_penggunaan')
+            ->whereNotNull('biaya_pemesanan')
+            ->whereNotNull('biaya_penyimpanan')
+            ->whereNotNull('leadtime')
+            ->count();
 
         $hasil = $data->items_details;
         return view('rekapan.details', [
             'active' => 'rekap',
             'responses' => $cobain,
-            'data_item' => $data
+            'data_item' => $data,
+            'data_terisi' => $data_terisi
         ]);
     }
 }

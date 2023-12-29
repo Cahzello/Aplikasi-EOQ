@@ -3,7 +3,6 @@
 use App\Http\Controllers\AutentikasiController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\PerhitunganController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RekapanController;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\UserController;
@@ -65,7 +64,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/rekapan-bulanan/eoq/{data}', [PerhitunganController::class, 'store'])->name('perhitungan.store');
 
 
-
     // Edit nama bahan baku, hapus bahan baku
     
     Route::get('/rekapan-bulanan/edit-bahanbaku/{item}', [ItemController::class, 'view_edit'])->name('item_view_edit');
@@ -92,10 +90,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/data/{data}/edit', [RoutingController::class, 'editPage'])->name('edit');
 
-    // Route::put('/data/{data}/edit', [ProductController::class, 'update'])->name('update');
-
-    // Route::delete('/data/{data}/delete', [ProductController::class, 'delete'])->name('delete');
-
+    Route::delete('/data/eoq/{item}', [PerhitunganController::class, 'delete'])->name('perhitungan.delete');
+    
     // logout 
 
     Route::post('/logout', [AutentikasiController::class, 'logout'])->name('logout');
@@ -109,11 +105,11 @@ Route::fallback(function () {
     ]);
 });
 
-Route::get('/', [AutentikasiController::class, 'showLogin'])->name('showLogin')->middleware('guest');
+Route::get('/', [AutentikasiController::class, 'login'])->name('showLogin')->middleware('guest');
 
-Route::get('/login', [AutentikasiController::class, 'showLogin'])->name('showLogin')->middleware('guest');
+Route::get('/login', [AutentikasiController::class, 'login'])->name('login')->middleware('guest');
 
-Route::post('/login', [AutentikasiController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login', [AutentikasiController::class, 'login_validate'])->name('login_validate')->middleware('guest');
 
 Route::get('/register', [AutentikasiController::class, 'showRegister'])->name('showRegis');
 

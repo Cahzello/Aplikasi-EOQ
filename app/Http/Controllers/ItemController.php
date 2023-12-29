@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Item_detail;
+use App\Models\Items_results;
+use App\Models\Items_summary;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -55,6 +57,8 @@ class ItemController extends Controller
     {
         $item_id = $item->id;
 
+        Items_results::where('item_id', $item_id)->delete();
+        Items_summary::where('item_id', $item_id)->delete();
         Item_detail::where('item_id', $item_id)->delete();
         Item::where('id', $item_id)->delete();
 

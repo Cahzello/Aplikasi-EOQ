@@ -84,10 +84,10 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
-                            <form action="{{ route('login') }}" method="POST" class="mb-3">
+                            <form action="{{ route('login_validate') }}" method="POST" class="mb-3">
                                 @method('post')
                                 @csrf
-                                <!-- Email input -->
+                                <!-- Email input -->    
                                 <div class="form-group">
                                     <label class="form-label" for="form1Example13">Username</label>
                                     <input name="username" type="text" id="form1Example13" value="{{ old('username') }}"

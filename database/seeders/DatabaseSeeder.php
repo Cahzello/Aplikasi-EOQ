@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
 
         User::create([
             'username' => 'rizky',
@@ -34,7 +33,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Item::create([
-            'user_id' => 11,
+            'user_id' => 1,
             'bahan_baku' => 'Tepung Tapioka'
         ]);
 
