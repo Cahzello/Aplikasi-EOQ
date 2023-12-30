@@ -53,12 +53,13 @@
                     <div class="card border-0">
                         <div class="card-body p-4 text-center">
                             <div class="mb-3">
-                                <img src="LOGO/black/128X128.svg" class="img-fluid mx-auto" alt="Phone image" style="max-width: 80%;">
+                                <img src="LOGO/black/128X128.svg" class="img-fluid mx-auto" alt="Phone image"
+                                    style="max-width: 80%;">
 
                             </div>
 
-                            <h1 id="title-company" class="text-dark">Shid<img src="LOGO/black/64X64.svg" class="img-fluid mx-auto" alt="Phone image"
-                                    style="max-width: 80%;">ia
+                            <h1 id="title-company" class="text-dark">Shid<img src="LOGO/black/64X64.svg"
+                                    class="img-fluid mx-auto" alt="Phone image" style="max-width: 80%;">ia
                             </h1>
                         </div>
                     </div>
@@ -87,7 +88,7 @@
                             <form action="{{ route('login_validate') }}" method="POST" class="mb-3">
                                 @method('post')
                                 @csrf
-                                <!-- Email input -->    
+                                <!-- Email input -->
                                 <div class="form-group">
                                     <label class="form-label" for="form1Example13">Username</label>
                                     <input name="username" type="text" id="form1Example13" value="{{ old('username') }}"
@@ -99,6 +100,12 @@
                                     <label class="form-label" for="form1Example23">Password</label>
                                     <input name="password" type="password" id="form1Example23"
                                         class="form-control form-control-lg" />
+                                </div>
+                                
+                                {{-- Remember button --}}
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" name="checkBox" id="exampleCheck1">
+                                    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
                                 </div>
 
                                 <!-- Submit button -->

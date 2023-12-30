@@ -19,7 +19,9 @@ class AutentikasiController extends Controller
     }
 
     public function login_validate(Request $request)
-    {
+    {   
+        $rememberMe = $request->checkBox;
+
         $validatedRequest = $request->validate([
             'username' => 'required',
             'password' => 'required'
@@ -28,7 +30,7 @@ class AutentikasiController extends Controller
             'password.required' => 'Masukan password anda!',
         ]);
 
-        if(Auth::attempt($validatedRequest)){
+        if(Auth::attempt($validatedRequest, $rememberMe)){
             $request->session()->regenerate();
             return redirect()->intended('/home');
         }
