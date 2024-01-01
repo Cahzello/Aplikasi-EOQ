@@ -97,7 +97,7 @@ class RoutingController extends Controller
             ->whereNotNull('biaya_penyimpanan')
             ->whereNotNull('leadtime')
             ->count();
-
+        // dd($data, $cobain);
         $hasil = $data->items_details;
         return view('rekapan.details', [
             'active' => 'rekap',

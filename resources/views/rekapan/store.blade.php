@@ -5,7 +5,7 @@
 
         <div class="card-shadow-mb4">
             <div class="card-header">
-                <a href="/rekapan-bulanan/data/{{$data_item->item_id}}" class="btn btn-primary mb-3"><i class="fas fa-fw fa-arrow-left"></i> Back</a>
+                <a href="/rekapan-bulanan/data/{{$data_item->id}}" class="btn btn-primary mb-3"><i class="fas fa-fw fa-arrow-left"></i> Back</a>
                 <h1 class="h2 mb-4 text-gray-800">Input Data</h1>
                 <p>Input Data Bulanan Untuk Bahan Baku</p>
                 @if ($errors->any())
@@ -57,21 +57,21 @@
                         <label for="biaya_pemesanan" class="form-label">Biaya Pemesanan Bahan Baku: </label>
                         <div class="input-group mb-3 w-50">
                             <input type="number" value="" class="form-control" id="biaya_pemesanan"
-                                name="biaya_pemesanan">
+                                name="biaya_pemesanan" step="0.01">
                         </div>
                     </div>
                     <div class="input-group d-flex flex-column mb-2">
                         <label for="biaya_penyimpanan" class="form-label">Biaya Penyimpanan Bahan Baku: </label>
                         <div class="input-group mb-3 w-50">
                             <input type="number" value="" class="form-control" id="biaya_penyimpanan"
-                                name="biaya_penyimpanan">
+                                name="biaya_penyimpanan" step="0.01">
                         </div>
                     </div>
                     <div class="input-group d-flex flex-column mb-2">
                         <label for="leadtime" class="form-label">Waktu Pemesanan Bahan Baku: </label>
                         <div class="input-group mb-3 w-50">
                             <input type="number" value="" class="form-control" id="leadtime"
-                                name="leadtime">
+                                name="leadtime" step="0.01">
                         </div>
                     </div>
 

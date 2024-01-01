@@ -48,21 +48,21 @@
                         <label for="biaya_pemesanan" class="form-label">Biaya Pemesanan Bahan Baku: </label>
                         <div class="input-group mb-3 w-50">
                             <input type="number" value="{{ $response->biaya_pemesanan }}" class="form-control"
-                                id="biaya_pemesanan" name="biaya_pemesanan">
+                                id="biaya_pemesanan" name="biaya_pemesanan" step="0.01">
                         </div>
                     </div>
                     <div class="input-group d-flex flex-column mb-2">
                         <label for="biaya_penyimpanan" class="form-label">Biaya Penyimpanan Bahan Baku: </label>
                         <div class="input-group mb-3 w-50">
                             <input type="number" value="{{ $response->biaya_penyimpanan }}" class="form-control"
-                                id="biaya_penyimpanan" name="biaya_penyimpanan">
+                                id="biaya_penyimpanan" name="biaya_penyimpanan" step="0.01">
                         </div>
                     </div>
                     <div class="input-group d-flex flex-column mb-2">
                         <label for="leadtime" class="form-label">Waktu Pemesanan Bahan Baku: </label>
                         <div class="input-group mb-3 w-50">
                             <input type="number" value="{{ $response->leadtime }}" class="form-control" id="leadtime"
-                                name="leadtime">
+                                name="leadtime" step="0.01">
                         </div>
                     </div>
 

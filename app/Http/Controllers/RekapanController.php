@@ -9,10 +9,10 @@ use Illuminate\Http\Request;
 class RekapanController extends Controller
 {
 
-    public function view_store(Item_detail $data_item)
+    public function view_store(Item $data_item)
     {
-
-        $bulan = Item_detail::where('item_id', $data_item->item_id)
+        // dd($data_item);
+        $bulan = Item_detail::where('item_id', $data_item->id)
             ->select('bulan')
             ->whereNull('jumlah_pembelian')
             ->whereNull('jumlah_penggunaan')
@@ -28,7 +28,7 @@ class RekapanController extends Controller
         ]);
     }
 
-    public function store(Request $request, Item_detail $data_item)
+    public function store(Request $request, Item $data_item)
     {
         $validatedRequest = $request->validate([
             'bulan' => 'required|string',
@@ -39,7 +39,7 @@ class RekapanController extends Controller
             'leadtime' => 'required|numeric',
         ]);
 
-        $item_id = $data_item->item_id;
+        $item_id = $data_item->id;
         $bulan = $validatedRequest['bulan'];
 
         if ($validatedRequest['bulan'] === 'notSelected') {
@@ -47,7 +47,6 @@ class RekapanController extends Controller
         }
 
         Item_detail::where('bulan', $bulan)->update($validatedRequest);
-
         return redirect('/rekapan-bulanan/data/' . $item_id)->with('success', 'Data berhasil diisi.');
     }
 
