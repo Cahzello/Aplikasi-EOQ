@@ -95,8 +95,30 @@
 
     <script type="module">
         $(document).ready(function() {
-            $('#button-print').on('click', function() {
-                $('#section-print').printThis();
+            let header = document.createElement("div");
+            let text = document.createElement("h1");
+
+            text.classList.add("text-center");
+            text.classList.add("text-light");
+            text.classList.add("font-weight-bold");
+            header.classList.add("bg-primary");
+            header.classList.add("p-3");
+            header.classList.add("mb-4");
+
+            text.innerText = "SHIDQIA";
+            header.appendChild(text);
+
+
+           
+
+            $("#button-print").on("click", function() {
+                $("#section-print").printThis({
+                    importCSS: true,
+                    importStyle: true,
+                    loadCSS: "/css/sb-admin-2.min.css",
+                    pageTitle: "Shidqia",
+                    header: header,
+                });
             });
         });
     </script>
