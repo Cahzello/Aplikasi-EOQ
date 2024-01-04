@@ -14,6 +14,7 @@ class UserController extends Controller
 {
     public function show_data(User $data)
     {
+        $this->authorize('admin');
         return view('user-profile.index', [
             'active' => 'user',
             'response' => $data
@@ -22,6 +23,7 @@ class UserController extends Controller
 
     public function editRole(Request $request, User $data)
     {
+        $this->authorize('admin');
         User::where('id', $data->id)->update(['role' => $request->role]);
 
         return redirect('/user-list/' . $data->id)->with('success', 'Role telah berhasil diubah');
@@ -91,6 +93,7 @@ class UserController extends Controller
 
     public function delete_acc_admin_priv(User $data)
     {
+        $this->authorize('admin');
         $user_id = $data->id;
         
         $item_id = Item::where('user_id', $user_id)->get('user_id');
