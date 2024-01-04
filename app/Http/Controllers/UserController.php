@@ -95,17 +95,17 @@ class UserController extends Controller
     {
         $this->authorize('admin');
         $user_id = $data->id;
-        
-        $item_id = Item::where('user_id', $user_id)->get('user_id');
+        // dd($data);
+        $item_id = Item::where('user_id', $user_id)->get('id')->first()->id;
         $count = Item::where('user_id', $user_id)->exists();
 
         if ($count) {
             Items_results::where('item_id', $item_id)->delete();
             Items_summary::where('item_id', $item_id)->delete();
             Item_detail::where('item_id', $item_id)->delete();
-            Item::where('id', $item_id)->delete();
+            Item::where('user_id', $user_id)->delete();
         }
-
+        // Items_results::where('$item_id', $item_id)
         User::where('id', $user_id)->delete();
 
         return redirect('/user-list')->with('success', 'Akun Berhasil Dihapus');
