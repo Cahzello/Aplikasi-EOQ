@@ -15,7 +15,7 @@ class UserController extends Controller
     public function show_data(User $data)
     {
         $this->authorize('admin');
-        return view('user-profile.index', [
+        return view('user-list.index', [
             'active' => 'user',
             'response' => $data
         ]);

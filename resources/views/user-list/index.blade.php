@@ -2,8 +2,9 @@
 
 @section('container')
     <div class="card card-shadow mx-4 my-4 ">
-        <div class="card-header">
-            <h1 class="text-gray-800">Data {{ $response['username'] }}</h1>
+        <div class="card-header ">
+            <a class="btn btn-primary mb-4" href="/data"><i class="fas fa-fw fa-arrow-left"></i> Back</a>
+            <h1 class="text-gray-800">Data User {{ $response['username'] }}</h1>
         </div>
         @if (session()->has('success'))
             <div class="mx-4 my-0">
