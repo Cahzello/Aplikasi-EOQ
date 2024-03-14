@@ -20,7 +20,7 @@ class AutentikasiController extends Controller
 
     public function login_validate(Request $request)
     {   
-        $rememberMe = $request->checkBox;
+        $rememberMe = $request->checkBox;   
 
         $validatedRequest = $request->validate([
             'username' => 'required',
