@@ -131,7 +131,7 @@
                 <input value="Update Username" type="submit" class="btn btn-success">
             </form>
 
-            <form method="post" action="{{route('update_password')}}" enctype="multipart/form-data" class="my-3">
+            <form method="post" action="{{ route('update_password') }}" enctype="multipart/form-data" class="my-3">
                 @method('post')
                 @csrf
                 <label for="password" class="form-label">Change Password: </label>
@@ -143,15 +143,16 @@
                     <button class="btn btn-outline-secondary" type="button" id="button-password"><i
                             class="far fa-eye"></i></button>
                 </div>
-                <input value="Update Password" type="submit" class="btn btn-success" >
+                <input value="Update Password" type="submit" class="btn btn-success">
             </form>
 
-            <form action="{{route('delete_acc')}}" method="post">
+            <form action="{{ route('delete_acc') }}" method="post">
                 @method('delete')
                 @csrf
                 <label for="delete" class="form-label">Delete Account: </label>
                 <div class="input-group">
-                    <input type="submit" value="Delete Account" class="btn btn-danger" onclick="return confirm('Apakah anda mau menghapus akun ini?')">
+                    <input type="submit" value="Delete Account" class="btn btn-danger"
+                        onclick="return confirm('Apakah anda mau menghapus akun ini?')">
                 </div>
                 <div class="alert alert-danger my-3">
                     <p>This action take delete the account and all records data have been created.</p>
@@ -161,22 +162,24 @@
         </div>
     </div>
     <script>
-        document.getElementById("button-password").addEventListener("click", function() {
-            var passwordInput = document.getElementById("password");
-            var repeatPwInput = document.getElementById("repeat_pw");
-            var buttonIcon = document.querySelector("#togglePassword i");
+        $(document).ready(function() {
+            document.getElementById("button-password").addEventListener("click", function() {
+                let passwordInput = document.getElementById("password");
+                let repeatPwInput = document.getElementById("repeat_pw");
+                let buttonIcon = document.querySelector("#togglePassword i");
 
-            if (passwordInput.type === "password") {
-                passwordInput.type = "text";
-                repeatPwInput.type = "text";
-                buttonIcon.classList.remove("far", "fa-eye");
-                buttonIcon.classList.add("fas", "fa-eye-slash");
-            } else {
-                passwordInput.type = "password";
-                repeatPwInput.type = "password";
-                buttonIcon.classList.remove("fas", "fa-eye-slash");
-                buttonIcon.classList.add("far", "fa-eye");
-            }
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    repeatPwInput.type = "text";
+                    buttonIcon.classList.remove("far", "fa-eye");
+                    buttonIcon.classList.add("fas", "fa-eye-slash");
+                } else {
+                    passwordInput.type = "password";
+                    repeatPwInput.type = "password";
+                    buttonIcon.classList.remove("fas", "fa-eye-slash");
+                    buttonIcon.classList.add("far", "fa-eye");
+                }
+            });
         });
     </script>
     <script>

@@ -28,7 +28,7 @@ class RoutingController extends Controller
         $user = User::find(auth()->user()->id);
 
         return view('user-profile.profile', [
-            'active' => 'profile',
+        'active' => 'profile',
             'response' => $user
         ]);
     }

@@ -19,6 +19,7 @@ class PerhitunganController extends Controller
     {
         $item_id = $data->id;
 
+
         $data_terisi = Item_detail::where('item_id', $data->id)
             ->whereNotNull('jumlah_pembelian')
             ->whereNotNull('jumlah_penggunaan')
@@ -32,13 +33,13 @@ class PerhitunganController extends Controller
             ->withErrors('Isi dulu datanya terlebih dahulu hingga semua bulan terpenuhi');
         }
 
-        $total = Item_detail::where('item_id', 1)->sum('jumlah_penggunaan');
-        $max  = Item_detail::where('item_id', 1)->max('jumlah_penggunaan');
-        $avg  = Item_detail::where('item_id', 1)->avg('jumlah_penggunaan');
-        $pembelian_avg  = Item_detail::where('item_id', 1)->avg('jumlah_pembelian');
-        $biayaPemesanan  = Item_detail::where('item_id', 1)->sum('biaya_pemesanan');
-        $biayaPenyimpanan = Item_detail::where('item_id', 1)->sum('biaya_penyimpanan');
-        $leadtime = Item_detail::where('item_id', 1)->sum('leadtime');
+        $total = Item_detail::where('item_id', $item_id)->sum('jumlah_penggunaan');
+        $max  = Item_detail::where('item_id', $item_id)->max('jumlah_penggunaan');
+        $avg  = Item_detail::where('item_id', $item_id)->avg('jumlah_penggunaan');
+        $pembelian_avg  = Item_detail::where('item_id', $item_id)->avg('jumlah_pembelian');
+        $biayaPemesanan  = Item_detail::where('item_id', $item_id)->sum('biaya_pemesanan');
+        $biayaPenyimpanan = Item_detail::where('item_id', $item_id)->sum('biaya_penyimpanan');
+        $leadtime = Item_detail::where('item_id', $item_id)->sum('leadtime');
         $arr = [
             'item_id'=> $item_id,
             'total_penggunaan_tahunan' => $total,
@@ -51,7 +52,8 @@ class PerhitunganController extends Controller
                 
         $status_item_summary = Items_summary::where('item_id', $data->id)->exists();
         if($status_item_summary){
-           $item = Items_summary::where('item_id', $data->id)->update($arr);
+           Items_summary::where('item_id', $data->id)->update($arr);
+           $item = Items_summary::where('item_id', $data->id)->value('id');
         } else {
             $item = Items_summary::create($arr);
         }

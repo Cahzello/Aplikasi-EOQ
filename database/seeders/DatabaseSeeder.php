@@ -20,16 +20,9 @@ class DatabaseSeeder extends Seeder
         User::create([
             'username' => 'rizky',
             'email' => 'cahzello@gmail.com',
-            'password' => bcrypt('password'),
+            'password' => bcrypt('24maret2006'),
             'role' => 'admin'
 
-        ]);
-
-        User::create([
-            'username' => 'yukina minato',
-            'email' => 'yukina@gmail.com',
-            'password' => bcrypt('password'),
-            'role' => 'user'
         ]);
 
         Item::create([
